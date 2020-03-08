@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block title %}商品一覧{% endblock %}
+
+{% block contents %}
+  {% for post in post_list %}
+    <h3>{{ post.part_name }}</h3>
+  {% empty %}
+    <p>まだ投稿がありません。</p>
+  {% endfor %}
+{% endblock %}
