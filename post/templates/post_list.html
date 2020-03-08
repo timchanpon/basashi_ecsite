@@ -4,6 +4,12 @@
 {% block contents %}
   {% for post in post_list %}
     <h3>{{ post.part_name }}</h3>
+    <p>{{ post.details }}</p>
+    <p>{{ post.num_grams }}</p>
+    <p>{{ post.purchase_amt }}</p>
+    <p>{{ post.stock_amt }}</p>
+    <p>{{ post.created_at }}</p>
+    <p>{{ post.updated_at }}</p>
   {% empty %}
     <p>まだ投稿がありません。</p>
   {% endfor %}
