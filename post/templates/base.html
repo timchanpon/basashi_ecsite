@@ -15,7 +15,8 @@
   <header id="header">
     <nav>
       <h3 id="nav-title"><a href="/">となん亭</a></h3>
-      <p id="hamburger-btn" @click="openHamburgerMenu"><i class="fas fa-bars"></i></p>
+      <p id="hamburger-menu" @click="openHamburgerMenu"><i class="fas fa-bars"></i></p>
+      <p id="search-modal" @click="openSearchModal"><i class="fas fa-search"></i></p>
     </nav>
 
     <div id="hamburger-overlay" v-if="isShowHM" @click="closeHamburgerMenu"></div>
@@ -26,6 +27,20 @@
         <h5>管理者用ページ</h5>
           <p>商品出品<a href="/create-post"></a></p>
           <p>管理サイト<a href="/admin"></a></p>
+      </div>
+    </transition>
+
+    <transition name="search-modal">
+      <div class="search-modal" v-if="isShowSM">
+        <div class="nav-search-modal">
+          <h4>商品検索画面</h4>
+          <p @click="closeSearchModal"><i class="fas fa-chevron-left"></i></p>
+        </div>
+
+        <div class="search-form">
+          <input type="text">
+          <button type="submit">検索</button>
+        </div>
       </div>
     </transition>
   </header>
@@ -39,6 +54,7 @@
       el: '#header',
       data: {
         isShowHM: false,
+        isShowSM: false,
       },
       methods: {
         openHamburgerMenu: function() {
@@ -46,6 +62,12 @@
         },
         closeHamburgerMenu: function() {
           this.isShowHM = false
+        },
+        openSearchModal: function() {
+          this.isShowSM = true
+        },
+        closeSearchModal: function() {
+          this.isShowSM = false
         },
       },
     })
