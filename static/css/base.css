@@ -48,11 +48,11 @@ nav {
     color: white;
     cursor: pointer;
 }
-#search-modal {
+#shopping-cart {
     position: absolute;
     top: 0; right: 10px;
 }
-#search-modal i {
+#shopping-cart i {
     line-height: 50px;
     font-size: 1.3rem;
     color: white;
@@ -113,8 +113,8 @@ nav {
     transition: .2s;
 }
 
-/* --- search modal --- */
-.search-modal {
+/* --- shopping cart --- */
+.shopping-cart {
     position: absolute;
     top: 0; left: 0;
     z-index: 2;
@@ -123,36 +123,33 @@ nav {
   
     background: white;
 }
-.nav-search-modal {
+.nav-shopping-cart {
     z-index: 3;
 
     width: 100%; height: 50px;
 
     background: rgba(34, 34, 34, .9);
 }
-.nav-search-modal h4 {
+.nav-shopping-cart h4 {
     line-height: 50px;
     text-align: center;
 
     color: white;
 }
-.nav-search-modal p {
+.nav-shopping-cart p {
     position: absolute;
     top: 0; left: 10px;
 }
-.nav-search-modal i {
+.nav-shopping-cart i {
     line-height: 50px;
     font-size: 1.3rem;
     color: white;
     cursor: pointer;
 }
-.search-form {
-    padding: 15px;
-}
-.search-modal-enter {
+.shopping-cart-enter {
 transform: translateX(100%);
 }
-.search-modal-enter-active {
+.shopping-cart-enter-active {
 transition: .5s;
 }
 

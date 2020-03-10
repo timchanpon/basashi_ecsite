@@ -18,7 +18,7 @@
     <nav>
       <h3 id="nav-title"><a href="/">となん亭</a></h3>
       <p id="hamburger-menu" @click="openHamburgerMenu"><i class="fas fa-bars"></i></p>
-      <p id="search-modal" @click="openSearchModal"><i class="fas fa-search"></i></p>
+      <p id="shopping-cart" @click="openShoppingCart"><i class="fas fa-shopping-cart"></i></p>
     </nav>
 
     <div id="hamburger-overlay" v-if="isShowHM" @click="closeHamburgerMenu"></div>
@@ -32,16 +32,15 @@
       </div>
     </transition>
 
-    <transition name="search-modal">
-      <div class="search-modal" v-if="isShowSM">
-        <div class="nav-search-modal">
-          <h4>商品検索画面</h4>
-          <p @click="closeSearchModal"><i class="fas fa-chevron-left"></i></p>
+    <transition name="shopping-cart">
+      <div class="shopping-cart" v-if="isShowSC">
+        <div class="nav-shopping-cart">
+          <h4>買い物かご</h4>
+          <p @click="closeShoppingCart"><i class="fas fa-chevron-left"></i></p>
         </div>
 
-        <div class="search-form">
-          <input type="text">
-          <button type="submit">検索</button>
+        <div class="contents-field">
+          <!-- 買い物かごの中身を表示 -->
         </div>
       </div>
     </transition>
@@ -58,7 +57,7 @@
       el: '#header',
       data: {
         isShowHM: false,
-        isShowSM: false,
+        isShowSC: false,
       },
       methods: {
         openHamburgerMenu: function() {
@@ -67,11 +66,11 @@
         closeHamburgerMenu: function() {
           this.isShowHM = false
         },
-        openSearchModal: function() {
-          this.isShowSM = true
+        openShoppingCart: function() {
+          this.isShowSC = true
         },
-        closeSearchModal: function() {
-          this.isShowSM = false
+        closeShoppingCart: function() {
+          this.isShowSC = false
         },
       },
     })
