@@ -8,6 +8,8 @@
     flex-wrap: wrap;
 }
 .post-card {
+    position: relative;
+
     width: 200px; height: 220px;
     margin: 5px;
 
@@ -18,6 +20,16 @@
 .post-card:hover {
     border: solid 1px black;
 }
+.post-card-link {
+    position: absolute;
+    top: 0; left: 0;
+    z-index: 1;
+
+    width: 200px; height: 220px;
+
+    cursor: pointer;
+}
+
 .post-card-img {
     width: 100%; height: 70%;
     margin: 0 auto;
@@ -27,6 +39,7 @@
 
     object-fit: contain;
 }
+
 .post-card-btm-section {
     width: 100%; height: 30%;
     padding: 5px;
@@ -39,6 +52,7 @@
     overflow: hidden;
     text-overflow: ellipsis;
 }
+
 .post-card-meta-section {
     position: relative;
 
@@ -55,4 +69,45 @@
     top: 2px; right: 7px;
 
     font-size: smaller;
+}
+
+/* --- post card modal --- */
+.post-card-modal-overlay {
+    position: absolute;
+    top: 0; left: 0;
+    z-index: 2;
+  
+    width: 100%; height: 100%;
+  
+    background: rgba(0, 0, 0, .3);
+}
+.post-card-modal {
+    position: fixed;
+    top: calc(50% - 200px);
+    left: calc(50% - 175px);
+    z-index: 3;
+
+    width: 350px; height: 400px;
+
+    background: white;
+}
+
+.post-card-modal-img {
+    position: absolute;
+    top: 0; left: 0;
+
+    width: 350px; height: 200px;
+}
+.post-card-modal-img img {
+    width: 100%; height: 100%;
+
+    object-fit: contain;
+}
+.post-card-modal-details {
+    position: absolute;
+    top: 210px; left: 10px;
+
+    width: 330px; height: 100px;
+
+    overflow: hidden;
 }
