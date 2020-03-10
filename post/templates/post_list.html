@@ -29,12 +29,14 @@
 
 {% block script %}
 <script type="text/x-template" id="post-card-component">
-  <div>
-    <p>[[ partName ]]</p>
-    <p>[[ details ]]</p>
-    <img :src="imgUrl">
-    <p>[[ numGrams ]]</p>
-    <p>[[ stockAmt ]]</p>
+  <div class="post-card">
+    <div class="post-card-img">
+      <img :src="imgUrl">
+    </div>
+    <div class="post-card-btm-section">
+      <h3 class="post-card-post-name">[[ partName ]] [[ numGrams ]]g</h3>
+      <p class="post-card-stock-amt">残り：[[ stockAmt ]]個</p>
+    </div>
   </div>
 </script>
 
