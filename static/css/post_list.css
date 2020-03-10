@@ -39,7 +39,20 @@
     overflow: hidden;
     text-overflow: ellipsis;
 }
-.post-card-stock-amt {
+.post-card-meta-section {
+    position: relative;
+
+    width: 100%;
+}
+.post-card-price {
+    position: absolute;
+    top: 2px; left: 7px;
+
     font-size: smaller;
-    text-align: right;
+}
+.post-card-stock-amt {
+    position: absolute;
+    top: 2px; right: 7px;
+
+    font-size: smaller;
 }

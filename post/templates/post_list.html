@@ -15,6 +15,7 @@
           part-name="{{ post.part_name }}"
           details="{{ post.details }}"
           img-url="{{ post.image.url }}"
+          price="{{ post.price }}"
           num-grams="{{ post.num_grams }}"
           stock-amt="{{ post.stock_amt }}"
         ></post-card-component>
@@ -35,7 +36,10 @@
     </div>
     <div class="post-card-btm-section">
       <h3 class="post-card-post-name">[[ partName ]] [[ numGrams ]]g</h3>
-      <p class="post-card-stock-amt">残り：[[ stockAmt ]]個</p>
+      <div class="post-card-meta-section">
+        <p class="post-card-price">[[ price ]]円</p>
+        <p class="post-card-stock-amt">残り：[[ stockAmt ]]個</p>
+      </div>
     </div>
   </div>
 </script>
@@ -47,6 +51,7 @@
       partName: String,
       details: String,
       imgUrl: String,
+      price: Number,
       numGrams: Number,
       stockAmt: Number,
     },
