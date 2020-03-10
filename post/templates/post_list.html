@@ -1,16 +1,66 @@
 {% extends 'base.html' %}
+{% load static %}
+
 {% block title %}商品一覧{% endblock %}
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/post_list.css' %}">
+{% endblock %}
 
 {% block contents %}
-  {% for post in post_list %}
-    <h3>{{ post.part_name }}</h3>
-    <p>{{ post.details }}</p>
-    <p>{{ post.num_grams }}</p>
-    <p>{{ post.purchase_amt }}</p>
-    <p>{{ post.stock_amt }}</p>
-    <p>{{ post.created_at }}</p>
-    <p>{{ post.updated_at }}</p>
-  {% empty %}
-    <p>まだ投稿がありません。</p>
-  {% endfor %}
+<div id="post-list">
+  {% if post_list %}
+    <div class="post-card-container">
+      {% for post in post_list %}
+        <post-card-component
+          part-name="{{ post.part_name }}"
+          details="{{ post.details }}"
+          img-url="{{ post.image.url }}"
+          num-grams="{{ post.num_grams }}"
+          stock-amt="{{ post.stock_amt }}"
+        ></post-card-component>
+      {% endfor %}
+    </div>
+  {% else %}
+    <p>まだ商品がありません。</p>
+    <p>商品出品は<a href="/create-post">こちら</a>から。</p>
+  {% endif %}
+</div>
+{% endblock %}
+
+{% block script %}
+<script type="text/x-template" id="post-card-component">
+  <div>
+    <p>[[ partName ]]</p>
+    <p>[[ details ]]</p>
+    <img :src="imgUrl">
+    <p>[[ numGrams ]]</p>
+    <p>[[ stockAmt ]]</p>
+  </div>
+</script>
+
+<script>
+  var PostCardComponent = {
+    template: '#post-card-component',
+    props: {
+      partName: String,
+      details: String,
+      imgUrl: String,
+      numGrams: Number,
+      stockAmt: Number,
+    },
+    data: function() {
+      return {
+        isShow: false,
+      }
+    },
+    delimiters: ['[[', ']]'],
+  }
+
+  new Vue({
+    el: '#post-list',
+    components: {
+      'post-card-component': PostCardComponent,
+    },
+  })
+</script>
 {% endblock %}

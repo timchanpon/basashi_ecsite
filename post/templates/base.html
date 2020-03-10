@@ -6,9 +6,11 @@
 
   <title>{% block title %}{% endblock %}</title>
 
-  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <link rel="stylesheet" href="{% static 'css/base.css' %}">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css">
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+  {% block head %}{% endblock %}
 </head>
 
 <body>
@@ -48,6 +50,8 @@
   <div class="contents-field">
     {% block contents %}{% endblock %}
   </div>
+
+  {% block script %}{% endblock %}
 
   <script>
     new Vue({
