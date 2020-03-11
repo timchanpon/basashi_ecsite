@@ -107,7 +107,18 @@
     position: absolute;
     top: 210px; left: 10px;
 
-    width: 330px; height: 100px;
+    width: 330px; height: 95px;
 
     overflow: hidden;
+
+    /* for Chrome, Safari and Firefox */
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 4;
+}
+.post-card-modal-link {
+    position: absolute;
+    top: 310; right: 10px;
+
+    font-size: smaller;
 }

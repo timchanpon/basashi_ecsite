@@ -49,7 +49,9 @@
     <div class="post-card-modal-img">
       <img :src="imgUrl">
     </div>
-    <p class="post-card-modal-details">[[ details ]]</p>
+    <p class="post-card-modal-details" v-if="details==''">これは、[[ partName ]][[ numGrams ]]gです。</p>
+    <p class="post-card-modal-details" v-else>[[ details ]]</p>
+    <a class="post-card-modal-link" href="#">商品詳細ページ</a>
   </div>
   </section>
 </script>
