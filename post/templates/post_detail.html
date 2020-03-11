@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}商品出品{% endblock %}
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/post_detail.css' %}">
+{% endblock %}
+
+{% block contents %}
+{{ object.part_name }}
+{% endblock %}

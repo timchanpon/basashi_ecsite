@@ -12,6 +12,7 @@
     <div class="post-card-container">
       {% for post in post_list %}
         <post-card-component
+          pk="{{ post.pk }}"
           part-name="{{ post.part_name }}"
           details="{{ post.details }}"
           img-url="{{ post.image.url }}"
@@ -51,7 +52,7 @@
     </div>
     <p class="post-modal-details" v-if="details==''">これは、[[ partName ]][[ numGrams ]]gです。</p>
     <p class="post-modal-details" v-else>[[ details ]]</p>
-    <a class="post-modal-link" href="#">商品詳細ページ</a>
+    <a class="post-modal-link" :href="'/post-detail/' + pk">商品詳細ページ</a>
     <div class="post-modal-order-section">
       <p class="post-modal-order-btn-amt" @click="minusOrderAmt"><i class="fas fa-minus"></i></p>
       <p class="post-modal-order-amt">[[ orderAmt ]]個</p>
@@ -67,6 +68,7 @@
   var PostCardComponent = {
     template: '#post-card-component',
     props: {
+      pk: Number,
       partName: String,
       details: String,
       imgUrl: String,

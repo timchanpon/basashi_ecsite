@@ -25,3 +25,8 @@ class CreatePostView(generic.CreateView):
         post.save()
 
         return super().form_valid(form)
+
+
+class PostDetailView(generic.DetailView):
+    model = Post
+    template_name = 'post_detail.html'
