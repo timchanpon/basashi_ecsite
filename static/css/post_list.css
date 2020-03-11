@@ -72,7 +72,7 @@
 }
 
 /* --- post card modal --- */
-.post-card-modal-overlay {
+.post-modal-overlay {
     position: absolute;
     top: 0; left: 0;
     z-index: 2;
@@ -81,7 +81,7 @@
   
     background: rgba(0, 0, 0, .3);
 }
-.post-card-modal {
+.post-modal {
     position: fixed;
     top: calc(50% - 200px);
     left: calc(50% - 175px);
@@ -92,18 +92,19 @@
     background: white;
 }
 
-.post-card-modal-img {
+.post-modal-img {
     position: absolute;
     top: 0; left: 0;
 
     width: 350px; height: 200px;
 }
-.post-card-modal-img img {
+.post-modal-img img {
     width: 100%; height: 100%;
 
     object-fit: contain;
 }
-.post-card-modal-details {
+
+.post-modal-details {
     position: absolute;
     top: 210px; left: 10px;
 
@@ -116,9 +117,37 @@
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 4;
 }
-.post-card-modal-link {
+.post-modal-link {
     position: absolute;
-    top: 310; right: 10px;
+    top: 310px; right: 10px;
 
+    height: 20px;
+
+    font-size: smaller;
+}
+
+.post-modal-order-section {
+    display: flex;
+    align-content: center;
+
+    position: absolute;
+    top: 335px; right: 10px;
+
+    width: 330px; height: 35px;
+}
+.post-modal-order-btn {
+    padding: 0 10px;
+}
+.post-modal-order-btn i {
+    line-height: 35px;
+}
+.post-modal-order-error-message {
+    position: absolute;
+    top: 370px; left: 10px;
+
+    width: 330px; height: 20px;
+
+    text-align: center;
+    color: palevioletred;
     font-size: smaller;
 }

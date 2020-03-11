@@ -31,7 +31,7 @@
 <script type="text/x-template" id="post-card-component">
   <section>
   <div class="post-card">
-    <p class="post-card-link" @click="openPostCardModal"></p>
+    <p class="post-card-link" @click="openPostModal"></p>
     <div class="post-card-img">
       <img :src="imgUrl">
     </div>
@@ -44,14 +44,20 @@
     </div>
   </div>
 
-  <div class="post-card-modal-overlay" v-if="isShowPCM" @click="closePostCardModal"></div>
-  <div class="post-card-modal" v-if="isShowPCM">
-    <div class="post-card-modal-img">
+  <div class="post-modal-overlay" v-if="isShowPM" @click="closePostModal"></div>
+  <div class="post-modal" v-if="isShowPM">
+    <div class="post-modal-img">
       <img :src="imgUrl">
     </div>
-    <p class="post-card-modal-details" v-if="details==''">これは、[[ partName ]][[ numGrams ]]gです。</p>
-    <p class="post-card-modal-details" v-else>[[ details ]]</p>
-    <a class="post-card-modal-link" href="#">商品詳細ページ</a>
+    <p class="post-modal-details" v-if="details==''">これは、[[ partName ]][[ numGrams ]]gです。</p>
+    <p class="post-modal-details" v-else>[[ details ]]</p>
+    <a class="post-modal-link" href="#">商品詳細ページ</a>
+    <div class="post-modal-order-section">
+      <p class="post-modal-order-btn" @click="minusOrderAmt"><i class="fas fa-minus"></i></p>
+      <p>[[ orderAmt ]]</p>
+      <p class="post-modal-order-btn" @click="plusOrderAmt"><i class="fas fa-plus"></i></p>
+    </div>
+    <p class="post-modal-order-error-message">[[ orderAmtErrorMessage ]]</p>
   </div>
   </section>
 </script>
@@ -69,15 +75,38 @@
     },
     data: function() {
       return {
-        isShowPCM: false,
+        isShowPM: false,
+        orderAmt: 0,
+        orderAmtErrorMessage: '',
       }
     },
     methods: {
-      openPostCardModal: function() {
-        this.isShowPCM = true
+      openPostModal: function() {
+        this.isShowPM = true
       },
-      closePostCardModal: function() {
-        this.isShowPCM = false
+      closePostModal: function() {
+        this.isShowPM = false
+      },
+      plusOrderAmt: function() {
+        this.orderAmt += 1
+      },
+      minusOrderAmt: function() {
+        this.orderAmt -= 1
+      },
+      clearOrderAmtErrorMessage: function() {
+        this.orderAmtErrorMessage = ''
+      },
+    },
+    watch: {
+      orderAmt: function() {
+        if (this.orderAmt < 0) {
+          this.orderAmt = 0
+        }
+        if (this.orderAmt > this.stockAmt) {
+          this.orderAmt = this.stockAmt
+          this.orderAmtErrorMessage = 'これ以上注文できません。'
+          setTimeout(this.clearOrderAmtErrorMessage, 3000)
+        }
       },
     },
     delimiters: ['[[', ']]'],
