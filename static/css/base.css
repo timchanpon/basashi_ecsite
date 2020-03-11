@@ -61,7 +61,7 @@ nav {
 
 /* --- hamburger menu --- */
 #hamburger-overlay {
-    position: absolute;
+    position: fixed;
     top: 0; left: 0;
     z-index: 2;
   
@@ -70,7 +70,7 @@ nav {
     background: rgba(0, 0, 0, .3);
 }
 .hamburger-menu {
-    position: absolute;
+    position: fixed;
     top: 0; left: 0;
     z-index: 3;
   
@@ -115,7 +115,7 @@ nav {
 
 /* --- shopping cart --- */
 .shopping-cart {
-    position: absolute;
+    position: fixed;
     top: 0; left: 0;
     z-index: 2;
   
