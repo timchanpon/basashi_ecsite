@@ -6,6 +6,7 @@
 .post-card-container {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
 }
 .post-card {
     position: relative;
@@ -128,7 +129,7 @@
 
 .post-modal-order-section {
     display: flex;
-    align-content: center;
+    justify-content: center;
 
     position: absolute;
     top: 335px; right: 10px;
@@ -139,6 +140,9 @@
     padding: 0 10px;
 }
 .post-modal-order-btn i {
+    line-height: 35px;
+}
+.post-modal-order-amt {
     line-height: 35px;
 }
 .post-modal-order-error-message {
