@@ -160,6 +160,7 @@
     margin: auto 10px;
 
     border-radius: 5px;
+    cursor: pointer;
 }
 .post-modal-order-error-message {
     position: absolute;
