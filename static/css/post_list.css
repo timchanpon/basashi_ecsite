@@ -136,18 +136,34 @@
 
     width: 330px; height: 35px;
 }
-.post-modal-order-btn {
-    padding: 0 10px;
-}
-.post-modal-order-btn i {
+.post-modal-order-btn-amt {
+    width: 35px; height: 35px;
+    padding: 0 5px;
+
+    border: solid black 1.5px;
+    border-radius: 50%;
     line-height: 35px;
+    text-align: center;
+    cursor: pointer;
+}
+.post-modal-order-btn-amt i {
+    line-height: 33px;
 }
 .post-modal-order-amt {
     line-height: 35px;
+    padding: 0 10px;
+
+    font-size: x-large;
+}
+.post-modal-order-btn-enter {
+    width: 100px; height: 30px;
+    margin: auto 10px;
+
+    border-radius: 5px;
 }
 .post-modal-order-error-message {
     position: absolute;
-    top: 370px; left: 10px;
+    top: 373px; left: 10px;
 
     width: 330px; height: 20px;
 

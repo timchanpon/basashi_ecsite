@@ -53,9 +53,10 @@
     <p class="post-modal-details" v-else>[[ details ]]</p>
     <a class="post-modal-link" href="#">商品詳細ページ</a>
     <div class="post-modal-order-section">
-      <p class="post-modal-order-btn" @click="minusOrderAmt"><i class="fas fa-minus"></i></p>
-      <p class="post-modal-order-amt">[[ orderAmt ]]</p>
-      <p class="post-modal-order-btn" @click="plusOrderAmt"><i class="fas fa-plus"></i></p>
+      <p class="post-modal-order-btn-amt" @click="minusOrderAmt"><i class="fas fa-minus"></i></p>
+      <p class="post-modal-order-amt">[[ orderAmt ]]個</p>
+      <p class="post-modal-order-btn-amt" @click="plusOrderAmt"><i class="fas fa-plus"></i></p>
+      <button class="post-modal-order-btn-enter">カートに追加</button>
     </div>
     <p class="post-modal-order-error-message">[[ orderAmtErrorMessage ]]</p>
   </div>
