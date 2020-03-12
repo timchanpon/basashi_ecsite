@@ -24,3 +24,15 @@
 .post-detail-details {
     margin-top: 10px;
 }
+
+.post-detail-meta-section {
+    display: flex;
+    justify-content: center;
+
+    height: 30px;
+    margin-top: 10px;
+}
+.post-detail-meta-section p {
+    line-height: 30px;
+    padding: 5px;
+}

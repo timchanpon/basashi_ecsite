@@ -14,4 +14,9 @@
 {% else %}
   <p class="post-detail-details">{{ object.details }}</p>
 {% endif %}
+<div class="post-detail-meta-section">
+  <p>価格：{{ object.price }}円</p>
+  <p>在庫数：{{ object.stock_amt }}個</p>
+  <p><a href="/delete-post">商品削除</a></p>
+</div>
 {% endblock %}
