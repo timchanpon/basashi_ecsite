@@ -7,16 +7,79 @@
 {% endblock %}
 
 {% block contents %}
-<img class="post-detail-img" src="{{ object.image.url }}">
-<h2 class="post-detail-post-name">{{ object.part_name }} {{ object.num_grams }}g</h2>
-{% if object.details == '' %}
-  <p class="post-detail-details">これは、{{ object.part_name }}{{ object.num_grams }}gです。</p>
-{% else %}
-  <p class="post-detail-details">{{ object.details }}</p>
-{% endif %}
-<div class="post-detail-meta-section">
-  <p>価格：{{ object.price }}円</p>
-  <p>在庫数：{{ object.stock_amt }}個</p>
-  <p><a href="{% url 'post:delete_post' object.pk %}">商品削除</a></p>
+<div id="post-detail">
+  <img class="post-detail-img" src="{{ object.image.url }}">
+  <h2 class="post-detail-post-name">{{ object.part_name }} {{ object.num_grams }}g</h2>
+  {% if object.details == '' %}
+    <p class="post-detail-details">これは、{{ object.part_name }}{{ object.num_grams }}gです。</p>
+  {% else %}
+    <p class="post-detail-details">{{ object.details }}</p>
+  {% endif %}
+  <div class="post-detail-meta-section">
+    <p>価格：{{ object.price }}円</p>
+    <p>在庫数：{{ object.stock_amt }}個</p>
+    <p><a href="{% url 'post:delete_post' object.pk %}">商品削除</a></p>
+  </div>
+  <post-detail-order-section-component stock-amt="{{ object.stock_amt }}"></post-detail-order-section-component>
 </div>
+{% endblock %}
+
+{% block script %}
+<script type="text/x-template" id="post-detail-order-section-component">
+  <section>
+  <div class="post-detail-order-section">
+    <p class="post-detail-order-btn-amt" @click="minusOrderAmt"><i class="fas fa-minus"></i></p>
+    <p class="post-detail-order-amt">[[ orderAmt ]]個</p>
+    <p class="post-detail-order-btn-amt" @click="plusOrderAmt"><i class="fas fa-plus"></i></p>
+    <button class="post-detail-order-btn-enter">カートに追加</button>
+  </div>
+  <p class="post-detail-order-error-message">[[ orderAmtErrorMessage ]]</p>
+  </section>
+</script>
+
+<script>
+  var PostDetailOrderSectionComponent = {
+    template: '#post-detail-order-section-component',
+    props: {
+      stockAmt: Number,
+    },
+    data: function() {
+      return {
+        orderAmt: 0,
+        orderAmtErrorMessage: '',
+      }
+    },
+    methods: {
+      plusOrderAmt: function() {
+        this.orderAmt += 1
+      },
+      minusOrderAmt: function() {
+        this.orderAmt -= 1
+      },
+      clearOrderAmtErrorMessage: function() {
+        this.orderAmtErrorMessage = ''
+      },
+    },
+    watch: {
+      orderAmt: function() {
+        if (this.orderAmt < 0) {
+          this.orderAmt = 0
+        }
+        if (this.orderAmt > this.stockAmt) {
+          this.orderAmt = this.stockAmt
+          this.orderAmtErrorMessage = 'これ以上注文できません。'
+          setTimeout(this.clearOrderAmtErrorMessage, 3000)
+        }
+      },
+    },
+    delimiters: ['[[', ']]'],
+  }
+
+  new Vue({
+    el: '#post-detail',
+    components: {
+      'post-detail-order-section-component': PostDetailOrderSectionComponent,
+    },
+  })
+</script>
 {% endblock %}

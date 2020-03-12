@@ -36,3 +36,49 @@
     line-height: 30px;
     padding: 5px;
 }
+
+.post-detail-order-section {
+    display: flex;
+    justify-content: center;
+
+    position: absolute;
+    top: 335px; right: 10px;
+
+    width: 330px; height: 35px;
+}
+.post-detail-order-btn-amt {
+    width: 35px; height: 35px;
+    padding: 0 5px;
+
+    border: solid black 1.5px;
+    border-radius: 50%;
+    line-height: 35px;
+    text-align: center;
+    cursor: pointer;
+}
+.post-detail-order-btn-amt i {
+    line-height: 33px;
+}
+.post-detail-order-amt {
+    line-height: 35px;
+    padding: 0 10px;
+
+    font-size: x-large;
+}
+.post-detail-order-btn-enter {
+    width: 100px; height: 30px;
+    margin: auto 10px;
+
+    border-radius: 5px;
+    cursor: pointer;
+}
+.post-detail-order-error-message {
+    position: absolute;
+    top: 373px; left: 10px;
+
+    width: 330px; height: 20px;
+
+    text-align: center;
+    color: palevioletred;
+    font-size: smaller;
+}
