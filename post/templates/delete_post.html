@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block title %}商品消去{% endblock %}
+
+{% block contents %}
+<form method="POST">
+  {% csrf_token %}
+  <p>本当に商品を消去しますか？</p>
+  <button type="submit">消去</button>
+</form>
+{% endblock %}

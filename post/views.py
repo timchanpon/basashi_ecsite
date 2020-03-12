@@ -13,6 +13,11 @@ class PostListView(generic.ListView):
         return Post.objects.order_by('-created_at')
 
 
+class PostDetailView(generic.DetailView):
+    model = Post
+    template_name = 'post_detail.html'
+
+
 class CreatePostView(generic.CreateView):
     model = Post
     template_name = 'create_post.html'
@@ -27,6 +32,7 @@ class CreatePostView(generic.CreateView):
         return super().form_valid(form)
 
 
-class PostDetailView(generic.DetailView):
+class DeletePostView(generic.DeleteView):
     model = Post
-    template_name = 'post_detail.html'
+    template_name = 'delete_post.html'
+    success_url = reverse_lazy('post:post_list')

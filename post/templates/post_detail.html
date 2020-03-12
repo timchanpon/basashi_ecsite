@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}商品出品{% endblock %}
+{% block title %}商品詳細{% endblock %}
 {% block head %}
 <link rel="stylesheet" href="{% static 'css/post_detail.css' %}">
 {% endblock %}
@@ -17,6 +17,6 @@
 <div class="post-detail-meta-section">
   <p>価格：{{ object.price }}円</p>
   <p>在庫数：{{ object.stock_amt }}個</p>
-  <p><a href="/delete-post">商品削除</a></p>
+  <p><a href="{% url 'post:delete_post' object.pk %}">商品削除</a></p>
 </div>
 {% endblock %}
