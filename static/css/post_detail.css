@@ -41,10 +41,8 @@
     display: flex;
     justify-content: center;
 
-    position: absolute;
-    top: 335px; right: 10px;
-
-    width: 330px; height: 35px;
+    height: 35px;
+    margin-top: 20px;
 }
 .post-detail-order-btn-amt {
     width: 35px; height: 35px;
@@ -73,10 +71,8 @@
     cursor: pointer;
 }
 .post-detail-order-error-message {
-    position: absolute;
-    top: 373px; left: 10px;
-
-    width: 330px; height: 20px;
+    height: 20px;
+    margin-top: 10px;
 
     text-align: center;
     color: palevioletred;
