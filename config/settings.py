@@ -149,14 +149,14 @@ SITE_ID = 1
 
 AUTHENTICATION_BACKENDS = (
     # 一般ユーザー用メアド認証
-    'django.account.auth_backends.AuthenticationBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
     # 管理サイト用ユーザー名認証
     'django.contrib.auth.backends.ModelBackend',
 )
 
 # メアド認証に変更
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
-ACCOUNT_USER_REQUIRED = False
+ACCOUNT_USERNAME_REQUIRED = False
 
 # サインアップ時メール認証を行うよう変更
 ACCOUNT_EMAIL_VERIFICATION = 'mandatory'

@@ -26,6 +26,12 @@
       <div class="hamburger-menu" v-if="isShowHM">
         <h5>顧客用ページ</h5>
           <p>商品一覧<a href="/"></a></p>
+          {% if user.is_authenticated %}
+            <p>ログアウト<a href="/accounts/logout"></a></p>
+          {% else %}
+            <p>新規登録<a href="/accounts/signup"></a></p>
+            <p>ログイン<a href="/accounts/login"></a></p>
+          {% endif %}
         <h5>管理者用ページ</h5>
           <p>商品出品<a href="/create-post"></a></p>
           <p>管理サイト<a href="/admin"></a></p>
