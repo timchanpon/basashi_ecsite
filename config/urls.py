@@ -23,7 +23,7 @@ from . import settings
 urlpatterns = [
     path('admin/', admin.site.urls),
 
-    path('', include('post.urls')),
+    path('', include('posts.urls')),
 ]
 
 
