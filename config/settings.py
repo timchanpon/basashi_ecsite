@@ -40,6 +40,10 @@ INSTALLED_APPS = [
 
     'posts.apps.PostsConfig',
     'users.apps.UsersConfig',
+
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
 ]
 
 MIDDLEWARE = [
@@ -137,3 +141,30 @@ MEDIA_URL = '/media/'
 
 # 拡張ユーザーモデルを定義
 AUTH_USER_MODEL = 'users.CustomUser'
+
+
+# django-allauth
+# django.contrib.sitesを使うためにサイト識別用IDを定義
+SITE_ID = 1
+
+AUTHENTICATION_BACKENDS = (
+    # 一般ユーザー用メアド認証
+    'django.account.auth_backends.AuthenticationBackend',
+    # 管理サイト用ユーザー名認証
+    'django.contrib.auth.backends.ModelBackend',
+)
+
+# メアド認証に変更
+ACCOUNT_AUTHENTICATION_METHOD = 'email'
+ACCOUNT_USER_REQUIRED = False
+
+# サインアップ時メール認証を行うよう変更
+ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
+ACCOUNT_EMAIL_REQUIRED = True
+
+# ログイン/ログアウト後の遷移先を設定
+LOGIN_REDIRECT_URL = 'posts:post_list'
+ACCOUNT_LOGOUT_REDIRECT_URL = 'account_login'
+
+# ログアウトリンクをクリック一発に変更
+ACCOUNT_LOGOUT_ON_GET = True
