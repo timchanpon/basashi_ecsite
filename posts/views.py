@@ -22,7 +22,7 @@ class CreatePostView(generic.CreateView):
     model = Post
     template_name = 'create_post.html'
     form_class = PostForm
-    success_url = reverse_lazy('post:post_list')
+    success_url = reverse_lazy('posts:post_list')
 
     def form_valid(self, form):
         post = form.save(commit=False)
@@ -35,4 +35,4 @@ class CreatePostView(generic.CreateView):
 class DeletePostView(generic.DeleteView):
     model = Post
     template_name = 'delete_post.html'
-    success_url = reverse_lazy('post:post_list')
+    success_url = reverse_lazy('posts:post_list')
