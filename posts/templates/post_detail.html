@@ -29,15 +29,13 @@
 {% block script %}
 <script type="text/x-template" id="post-detail-order-section-component">
   <section>
-  <div class="post-detail-order-section">
-    <form method="POST" action="{% url 'users:add_to_shopping_cart' object.pk %}">
-      {% csrf_token %}
-      <p class="post-detail-order-btn-amt" @click="minusOrderAmt"><i class="fas fa-minus"></i></p>
-      <input class="post-detail-order-amt" type="number" name="order_amt" :value="orderAmt">
-      <p class="post-detail-order-btn-amt" @click="plusOrderAmt"><i class="fas fa-plus"></i></p>
-      <button class="post-detail-order-btn-enter" type="submit">カートに追加</button>
-    </form>
-  </div>
+  <form class="post-detail-order-section" method="POST" action="{% url 'users:add_to_shopping_cart' object.pk %}">
+    {% csrf_token %}
+    <p class="post-detail-order-btn-amt" @click="minusOrderAmt"><i class="fas fa-minus"></i></p>
+    <input class="post-detail-order-amt" type="number" name="order_amt" :value="orderAmt" min=0 :max="stockAmt">
+    <p class="post-detail-order-btn-amt" @click="plusOrderAmt"><i class="fas fa-plus"></i></p>
+    <button class="post-detail-order-btn-enter" type="submit">カートに追加</button>
+  </form>
   <p class="post-detail-order-error-message">[[ orderAmtErrorMessage ]]</p>
   </section>
 </script>
