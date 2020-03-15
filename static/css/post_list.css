@@ -150,8 +150,8 @@
     line-height: 33px;
 }
 .post-modal-order-amt {
-    line-height: 35px;
-    padding: 0 10px;
+    width: 50px; height: 35px;
+    margin: 0 10px;
 
     font-size: x-large;
 }
