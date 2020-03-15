@@ -18,7 +18,9 @@
   <div class="post-detail-meta-section">
     <p>価格：{{ object.price }}円</p>
     <p>在庫数：{{ object.stock_amt }}個</p>
-    <p><a href="{% url 'posts:delete_post' object.pk %}">商品削除</a></p>
+    {% if user.is_superuser %}
+      <p><a href="{% url 'posts:delete_post' object.pk %}">商品削除</a></p>
+    {% endif %}
   </div>
   <post-detail-order-section-component stock-amt="{{ object.stock_amt }}"></post-detail-order-section-component>
 </div>

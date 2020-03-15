@@ -1,6 +1,8 @@
 from django.views import generic
 from django.urls import reverse_lazy
 
+from braces.views import SuperuserRequiredMixin
+
 from .forms import PostForm
 from .models import Post
 
@@ -18,7 +20,7 @@ class PostDetailView(generic.DetailView):
     template_name = 'post_detail.html'
 
 
-class CreatePostView(generic.CreateView):
+class CreatePostView(SuperuserRequiredMixin, generic.CreateView):
     model = Post
     template_name = 'create_post.html'
     form_class = PostForm
@@ -32,7 +34,7 @@ class CreatePostView(generic.CreateView):
         return super().form_valid(form)
 
 
-class DeletePostView(generic.DeleteView):
+class DeletePostView(SuperuserRequiredMixin, generic.DeleteView):
     model = Post
     template_name = 'delete_post.html'
     success_url = reverse_lazy('posts:post_list')
