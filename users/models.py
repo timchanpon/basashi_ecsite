@@ -16,7 +16,7 @@ class ShoppingCart(models.Model):
 
     user = models.ForeignKey(CustomUser, verbose_name='ユーザー', on_delete=models.CASCADE)
     post = models.ForeignKey(Post, verbose_name='ポスト', on_delete=models.CASCADE)
-    order_amt = models.PositiveIntegerField(verbose_name='購入数', editable=False)
+    order_amt = models.PositiveIntegerField(verbose_name='購入数', default=0)
 
     class Meta:
         verbose_name_plural = '買い物かごモデル'
