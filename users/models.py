@@ -20,3 +20,10 @@ class ShoppingCart(models.Model):
 
     class Meta:
         verbose_name_plural = '買い物かごモデル'
+
+    def __str__(self):
+        user = self.user
+        post = self.post
+        order_amt = self.order_amt
+
+        return f'{user} {post} {order_amt}個'
