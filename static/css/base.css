@@ -191,6 +191,9 @@ transition: .5s;
 
     text-align: center;
 }
+.shopping-cart-delete-modal input {
+    display: none;
+}
 .sc-delete-modal-btn-L {
     position: absolute;
     top: 37px; left: 40px;

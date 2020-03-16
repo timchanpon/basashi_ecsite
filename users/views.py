@@ -16,3 +16,14 @@ class AddToShoppingCartView(LoginRequiredMixin, generic.View):
         tmp.save()
 
         return redirect(reverse('posts:post_list'))
+
+
+class RemoveFromShoppingCartView(LoginRequiredMixin, generic.View):
+    def post(self, request):
+        pk = request.POST['pk']
+        user = self.request.user
+        shopping_cart = ShoppingCart.objects.get(pk=pk)
+        if shopping_cart.user == user:
+            shopping_cart.delete()
+
+        return redirect(reverse('posts:post_list'))

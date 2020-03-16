@@ -86,11 +86,12 @@
     </p>
     <div class="shopping-cart-delete-modal-overlay" v-if="isShowSCDM"></div>
     <div class="shopping-cart-delete-modal" v-if="isShowSCDM">
-      <form method="POST" action="#">
+      <form method="POST" action="{% url 'users:remove_from_shopping_cart' %}">
         {% csrf_token %}
         <p>この商品を買い物かごから消去しますか？</p>
+        <input type="number" name="pk" :value="pk">
         <button class="sc-delete-modal-btn-L" type="button" @click="closeShoppingCartDeleteModal">キャンセル</button>
-        <button class="sc-delete-modal-btn-R" type="submit" @click="closeShoppingCartDeleteModal">消去</button>
+        <button class="sc-delete-modal-btn-R" type="submit">消去</button>
       </form>
     </div>
     </section>
