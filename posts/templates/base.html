@@ -50,7 +50,7 @@
 
         <div class="contents-field">
           {% if user.is_authenticated %}
-            {% with cart_obj_list=user.get_username|get_shopping_cart %}
+            {% with user.get_username|get_shopping_cart as cart_obj_list %}
               {% for cart_obj in cart_obj_list %}
                 <p>{{ cart_obj.post }}{{ cart_obj.post.num_grams }}g {{ cart_obj.order_amt }}個</p>
               {% empty %}
