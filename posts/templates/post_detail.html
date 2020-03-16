@@ -22,7 +22,11 @@
       <p><a href="{% url 'posts:delete_post' object.pk %}">商品削除</a></p>
     {% endif %}
   </div>
-  <post-detail-order-section-component stock-amt="{{ object.stock_amt }}"></post-detail-order-section-component>
+  {% if user.is_authenticated %}
+    <post-detail-order-section-component stock-amt="{{ object.stock_amt }}"></post-detail-order-section-component>
+  {% else %}
+    <p class="post-detail-order-section-nouser">※商品を注文するためには、ログインが必要です。</p>
+  {% endif %}
 </div>
 {% endblock %}
 

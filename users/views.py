@@ -1,12 +1,13 @@
 from django.views import generic
 from django.shortcuts import redirect
 from django.urls import reverse
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 from posts.models import Post
 from .models import ShoppingCart
 
 
-class AddToShoppingCartView(generic.View):
+class AddToShoppingCartView(LoginRequiredMixin, generic.View):
     def post(self, request, **kwargs):
         user = self.request.user
         post = Post.objects.get(pk=kwargs['pk'])

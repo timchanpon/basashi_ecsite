@@ -46,21 +46,27 @@
   </div>
 
   <div class="post-modal-overlay" v-if="isShowPM" @click="closePostModal"></div>
-  <div class="post-modal" v-if="isShowPM">
+  {% if user.is_authenticated %}
+    <div class="post-modal" v-if="isShowPM">
+  {% else %}
+    <div class="post-modal-nouser" v-if="isShowPM">
+  {% endif %}
     <div class="post-modal-img">
       <img :src="imgUrl">
     </div>
     <p class="post-modal-details" v-if="details==''">これは、[[ partName ]][[ numGrams ]]gです。</p>
     <p class="post-modal-details" v-else>[[ details ]]</p>
     <a class="post-modal-link" :href="'/post-detail/' + pk">商品詳細ページ</a>
-    <form class="post-modal-order-section" method="POST" :action="'/users/add2-shopping-cart/' + pk + '/'">
-      {% csrf_token %}
-      <p class="post-modal-order-btn-amt" @click="minusOrderAmt"><i class="fas fa-minus"></i></p>
-      <input class="post-modal-order-amt" type="number" name="order_amt" :value="orderAmt" min=0 :max="stockAmt">
-      <p class="post-modal-order-btn-amt" @click="plusOrderAmt"><i class="fas fa-plus"></i></p>
-      <button class="post-modal-order-btn-enter">カートに追加</button>
-    </form>
-    <p class="post-modal-order-error-message">[[ orderAmtErrorMessage ]]</p>
+    {% if user.is_authenticated %}
+      <form class="post-modal-order-section" method="POST" :action="'/users/add2-shopping-cart/' + pk + '/'">
+        {% csrf_token %}
+        <p class="post-modal-order-btn-amt" @click="minusOrderAmt"><i class="fas fa-minus"></i></p>
+        <input class="post-modal-order-amt" type="number" name="order_amt" :value="orderAmt" min=0 :max="stockAmt">
+        <p class="post-modal-order-btn-amt" @click="plusOrderAmt"><i class="fas fa-plus"></i></p>
+        <button class="post-modal-order-btn-enter">カートに追加</button>
+      </form>
+      <p class="post-modal-order-error-message">[[ orderAmtErrorMessage ]]</p>
+    {% endif %}
   </div>
   </section>
 </script>

@@ -92,6 +92,16 @@
 
     background: white;
 }
+.post-modal-nouser {
+    position: fixed;
+    top: calc(50% - 170px);
+    left: calc(50% - 175px);
+    z-index: 3;
+
+    width: 350px; height: 340px;
+
+    background: white;
+}
 
 .post-modal-img {
     position: absolute;
