@@ -153,6 +153,14 @@ transform: translateX(100%);
 transition: .5s;
 }
 
+.shopping-cart-obj-link {
+    color: black;
+}
+.shopping-cart-obj-link:hover {
+    color: black;
+    text-decoration: underline;
+}
+
 
 /* contents
 ------------------------- */
