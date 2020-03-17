@@ -65,6 +65,9 @@
                 <p>買い物かごが空です。</p>
               {% endfor %}
             {% endwith %}
+            {% with user.get_username|calc_total_order_price as total_price %}
+              <p class="shopping-cart-total-price">合計金額：{{ total_price }}円</p>
+            {% endwith %}
           {% else %}
             <p>ログインしていないため、買い物かごを表示できません。</p>
           {% endif %}
