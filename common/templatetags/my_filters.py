@@ -1,5 +1,6 @@
 from django import template
 
+from ..models import SiteSettings
 from users.models import CustomUser, ShoppingCart
 
 register = template.Library()
@@ -24,3 +25,10 @@ def calc_total_order_price(username):
         total_price += price * amt
 
     return total_price
+
+
+@register.filter
+def get_site_settings(true):
+    site_settings = SiteSettings.objects.get(is_selected=true)
+
+    return site_settings
