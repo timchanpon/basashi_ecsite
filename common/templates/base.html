@@ -39,6 +39,7 @@
           <p>管理サイト<a href="/admin"></a></p>
           {% if user.is_superuser %}
             <p>商品出品<a href="/create-post"></a></p>
+            <p>サイト設定変更<a href="{% url 'common:update_site_settings' True %}"></a></p>
           {% endif %}
       </div>
     </transition>

@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block title %}サイト設定変更{% endblock %}
+
+{% block contents %}
+<form method="POST">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit">変更</button>
+</form>
+{% endblock %}
