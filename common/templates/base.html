@@ -51,7 +51,7 @@
           <p @click="closeShoppingCart"><i class="fas fa-chevron-left"></i></p>
         </div>
 
-        <div class="contents-field">
+        <div class="shopping-cart-contents-field">
           {% if user.is_authenticated %}
             {% with user.get_username|get_shopping_cart as cart_obj_list %}
               {% for cart_obj in cart_obj_list %}
@@ -79,7 +79,7 @@
     </transition>
   </header>
 
-  <div class="contents-field">
+  <div class="contents-field" id="main-content">
     {% block contents %}{% endblock %}
   </div>
 
@@ -155,6 +155,19 @@
         },
         closeShoppingCart: function() {
           this.isShowSC = false
+        },
+      },
+      watch: {
+        isShowSC: function() {
+          el = document.getElementById('main-content')
+          if (this.isShowSC && el) {
+            shortenElement = function() {
+              el.style.height = 'calc(100% - 50px)'
+            }
+            setTimeout(shortenElement, 125)
+          } else {
+            el.style.height = 'auto'
+          }
         },
       },
       components: {
