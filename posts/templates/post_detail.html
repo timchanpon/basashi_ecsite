@@ -9,9 +9,9 @@
 {% block contents %}
 <div id="post-detail">
   <img class="post-detail-img" src="{{ object.image.url }}">
-  <h2 class="post-detail-post-name">{{ object.part_name }} {{ object.num_grams }}g</h2>
+  <h2 class="post-detail-post-name">{{ object.part.part_name }} {{ object.num_grams }}g</h2>
   {% if object.details == '' %}
-    <p class="post-detail-details">これは、{{ object.part_name }}{{ object.num_grams }}gです。</p>
+    <p class="post-detail-details">これは、{{ object.part.part_name }}{{ object.num_grams }}gです。</p>
   {% else %}
     <p class="post-detail-details">{{ object.details }}</p>
   {% endif %}

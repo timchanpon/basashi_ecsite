@@ -13,7 +13,7 @@
       {% for post in post_list %}
         <post-card-component
           pk="{{ post.pk }}"
-          part-name="{{ post.part_name }}"
+          part-name="{{ post.part.part_name }}"
           details="{{ post.details }}"
           img-url="{{ post.image.url }}"
           price="{{ post.price }}"
