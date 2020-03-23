@@ -27,6 +27,13 @@
     <div id="hamburger-overlay" v-if="isShowHM" @click="closeHamburgerMenu"></div>
     <transition name="hamburger-menu">
       <div class="hamburger-menu" v-if="isShowHM">
+        {% if user.is_authenticated %}
+          <div class="hamburger-menu-user-section">
+            <a id="hamburger-menu-user-link" href="#"></a>
+            <img id="hamburger-menu-user-icon" src="{{ user.user_icon.url }}">
+            <h5 id="hamburger-menu-user-name">{{ user.username }}</h5>
+          </div>
+        {% endif %}
         <h5>顧客用ページ</h5>
           <p>商品一覧<a href="/"></a></p>
           {% if user.is_authenticated %}
