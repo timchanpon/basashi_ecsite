@@ -34,4 +34,4 @@ class Post(models.Model):
         verbose_name_plural = 'ポストモデル'
 
     def __str__(self):
-        return self.part
+        return self.part.part_name
