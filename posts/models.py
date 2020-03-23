@@ -2,6 +2,19 @@ from django.db import models
 from django.utils import timezone
 
 
+class Part(models.Model):
+    """部位モデル"""
+
+    part_name = models.CharField(verbose_name='部位名', max_length=20)
+    how_to_eat = models.TextField(verbose_name='賞味方法', max_length=50, blank=True, null=True)
+
+    class Meta:
+        verbose_name_plural = '部位モデル'
+
+    def __str__(self):
+        return self.part_name
+
+
 class Post(models.Model):
     """ポストモデル"""
 
