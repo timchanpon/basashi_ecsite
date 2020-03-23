@@ -29,7 +29,7 @@
       <div class="hamburger-menu" v-if="isShowHM">
         {% if user.is_authenticated %}
           <div class="hamburger-menu-user-section">
-            <a id="hamburger-menu-user-link" href="#"></a>
+            <a id="hamburger-menu-user-link" href="{% url 'users:user_detail' user.pk %}"></a>
             <img id="hamburger-menu-user-icon" src="{{ user.user_icon.url }}">
             <h5 id="hamburger-menu-user-name">{{ user.username }}</h5>
           </div>

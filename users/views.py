@@ -4,7 +4,7 @@ from django.urls import reverse
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 from posts.models import Post
-from .models import ShoppingCart
+from .models import CustomUser, ShoppingCart
 
 
 class AddToShoppingCartView(LoginRequiredMixin, generic.View):
@@ -27,3 +27,8 @@ class RemoveFromShoppingCartView(LoginRequiredMixin, generic.View):
             shopping_cart.delete()
 
         return redirect(reverse('posts:post_list'))
+
+
+class UserDetailView(LoginRequiredMixin, generic.DetailView):
+    model = CustomUser
+    template_name = 'user_detail.html'
