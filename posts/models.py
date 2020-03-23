@@ -18,7 +18,7 @@ class Part(models.Model):
 class Post(models.Model):
     """ポストモデル"""
 
-    part = models.ForeignKey(Part, verbose_name='部位', on_delete=models.CASCADE)
+    part = models.ForeignKey(Part, verbose_name='部位', on_delete=models.PROTECT)
     details = models.TextField(verbose_name='詳細', max_length=200, blank=True, null=True)
     image = models.ImageField(verbose_name='商品画像', default='basashi_sample.jpg')
     num_grams = models.PositiveIntegerField(verbose_name='グラム数', default=100)

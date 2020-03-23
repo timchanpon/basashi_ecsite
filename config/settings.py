@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'common.apps.CommonConfig',
     'posts.apps.PostsConfig',
     'users.apps.UsersConfig',
+    'addresses.apps.AddressesConfig',
 
     'django.contrib.sites',
     'allauth',
