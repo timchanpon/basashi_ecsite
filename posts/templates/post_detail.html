@@ -15,6 +15,10 @@
   {% else %}
     <p class="post-detail-details">{{ object.details }}</p>
   {% endif %}
+  <div class="post-detail-about-section">
+    <p>賞味方法：{{ object.part.how_to_eat }}</p>
+    <p>消費期限：{{ object.exp_date }}</p>
+  </div>
   <div class="post-detail-meta-section">
     <p>価格：{{ object.price }}円</p>
     <p>在庫数：{{ object.stock_amt }}個</p>
