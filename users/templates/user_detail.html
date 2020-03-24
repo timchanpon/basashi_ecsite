@@ -9,7 +9,7 @@
 <h4>{{ object.username }}</h4>
 
 <div id="json-test">
-  <p>[[ items.data ]]</p>
+  <p>[[ addresses.data ]]</p>
 </div>
 {% endblock %}
 
@@ -18,10 +18,10 @@
   new Vue({
     el: '#json-test',
     data: {
-      items: null,
+      addresses: null,
     },
     mounted: function() {
-      axios.get("/static/json/sample.json").then(response => (this.items = response))
+      axios.get("/static/json/addresses.json").then(response => (this.addresses = response))
     },
     delimiters: ['[[', ']]'],
   })
