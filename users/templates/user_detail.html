@@ -1,6 +1,29 @@
 {% extends 'base.html' %}
+
 {% block title %}ユーザー情報{% endblock %}
+{% block head %}
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+{% endblock %}
 
 {% block contents %}
 <h4>{{ object.username }}</h4>
+
+<div id="json-test">
+  <p>[[ items.data ]]</p>
+</div>
+{% endblock %}
+
+{% block script %}
+<script>
+  new Vue({
+    el: '#json-test',
+    data: {
+      items: null,
+    },
+    mounted: function() {
+      axios.get("/static/json/sample.json").then(response => (this.items = response))
+    },
+    delimiters: ['[[', ']]'],
+  })
+</script>
 {% endblock %}
