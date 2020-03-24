@@ -9,7 +9,12 @@
 <h4>{{ object.username }}</h4>
 
 <div id="json-test">
-  <p>[[ addresses.data ]]</p>
+  <select v-model="pref">
+    <option v-for="address in addresses.data" :value="address.id">{[ address.pref ]}</option>
+  </select>
+  <select>
+    <option v-for="item in city">{[ item.name ]}</option>
+  </select>
 </div>
 {% endblock %}
 
@@ -19,11 +24,22 @@
     el: '#json-test',
     data: {
       addresses: null,
+      pref: null,
+      city: null,
+    },
+    watch: {
+      pref: function() {
+        if (this.pref) {
+          this.city = this.addresses.data[this.pref-1]["city"]
+        } else {
+          this.city = null
+        }
+      },
     },
     mounted: function() {
       axios.get("/static/json/addresses.json").then(response => (this.addresses = response))
     },
-    delimiters: ['[[', ']]'],
+    delimiters: ['{[', ']}'],
   })
 </script>
 {% endblock %}
