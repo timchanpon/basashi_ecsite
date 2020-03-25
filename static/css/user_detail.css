@@ -1,0 +1,57 @@
+@charset "UTF-8";
+
+
+/* user detail
+------------------------- */
+.user-detail-icon {
+    width: 100%;
+    text-align: center;
+}
+.user-detail-icon img {
+    width: 120px; height: 120px;
+
+    object-fit: contain;
+    border-radius: 50%;
+}
+.user-detail-name {
+    margin-top: 10px;
+
+    text-align: center;
+}
+
+#user-detail-menu {
+    margin-top: 10px;
+}
+.user-detail-menu-tab {
+    display: flex;
+    height: 40px;
+}
+.user-detail-menu-tab label {
+    line-height: 40px;
+    padding: 0 10px;
+
+    background: #EBEBE4;
+    border-radius: 13px 13px 0 0;
+    cursor: pointer;
+}
+.user-detail-menu-tab input {
+    display: none;
+}
+.user-detail-menu-tab input:checked + label {
+    background: white;
+}
+.user-detail-menu-body {
+    position: relative;
+
+    width: 100%; height: 300px;
+}
+
+.user-detail-menu-address {
+    position: absolute;
+    top: 0; left: 0;
+
+    width: 100%; height: 100%;
+    padding: 20px;
+
+    background: white;
+}
