@@ -19,6 +19,7 @@
     text-align: center;
 }
 
+/* --- user detail menu --- */
 #user-detail-menu {
     margin-top: 10px;
 }
@@ -46,6 +47,7 @@
     width: 100%; height: 300px;
 }
 
+/* --- user detail menu address --- */
 .user-detail-menu-address {
     position: absolute;
     top: 0; left: 0;

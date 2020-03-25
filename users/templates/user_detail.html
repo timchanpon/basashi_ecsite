@@ -23,24 +23,33 @@
   <div class="user-detail-menu-body">
     <div class="user-detail-menu-address" v-if="tabSelected=='address'">
       <p>
-        都道府県・市区町村・丁目
+        都道府県
         <select v-model="prefId" @change="cityId=null; chome=null; cityName=''; chomeName=''">
           <option v-for="item in addresses.data" :value="item.id">{[ item.name ]}</option>
         </select>
-        <select v-model="cityId" @change="chomeName=''">
+      </p>
+      <p>
+        市区町村
+        <select v-model="cityId" @change="chomeName=''" :disabled="!prefId">
           <option v-for="item in city" :value="item.id">{[ item.name ]}</option>
         </select>
-        <select v-model="chomeName">
+      </p>
+      <p>
+        丁目
+        <select v-model="chomeName" :disabled="!cityId">
           <option v-for="item in chome" :value="item">{[ item ]}</option>
         </select>
       </p>
-    
-      <input name="pref" type="hidden" :value="prefName" required>
-      <input name="city" type="hidden" :value="cityName" required>
-      <input name="chome" type="hidden" :value="chomeName" required>
-      <p>番地・号 <input name="banchi_go" maxlength="10" v-model="banchiGo" :disabled="!chomeName" required></p>
-      <p>建物名・号室 <input name="building" maxlength="30" v-model="building" :disabled="!banchiGo"></p>
-    
+      <form method="POST" action="{% url 'addresses:add_address' %}">
+        {% csrf_token %}
+        <input name="pref" type="hidden" :value="prefName" required>
+        <input name="city" type="hidden" :value="cityName" required>
+        <input name="chome" type="hidden" :value="chomeName" required>
+        <p>番地・号 <input name="banchi_go" maxlength="10" v-model="banchiGo" :disabled="!chomeName" required></p>
+        <p>建物名・号室 <input name="building" maxlength="30" v-model="building" :disabled="!banchiGo"></p>
+        <p>住所区分 <input name="address_type" maxlength="10" placeholder="例）自宅"></p>
+        <button type="submit">登録</button>
+      </form>
       <p>{[ prefName ]}{[ cityName ]}{[ chomeName ]}{[ banchiGo ]} {[ building ]}</p>
     </div>
   </div>
