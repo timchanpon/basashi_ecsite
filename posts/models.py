@@ -25,7 +25,7 @@ class Post(models.Model):
     price = models.PositiveIntegerField(verbose_name='価格')
     purchase_amt = models.PositiveIntegerField(verbose_name='仕入れ量', default=1)
     stock_amt = models.PositiveIntegerField(verbose_name='在庫数', editable=False)
-    exp_date = models.DateField(verbose_name='商品期限', default=timezone.now)
+    exp_date = models.DateField(verbose_name='消費期限', default=timezone.now)
 
     created_at = models.DateTimeField(verbose_name='作成日時', auto_now_add=True)
     updated_at = models.DateTimeField(verbose_name='更新日時', auto_now=True)
