@@ -1,6 +1,5 @@
 from django.views import generic
 from django.shortcuts import redirect
-from django.urls import reverse
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 from .models import Address
@@ -24,4 +23,4 @@ class AddAddressView(LoginRequiredMixin, generic.View):
 
         tmp.save()
 
-        return redirect(reverse('posts:post_list'))
+        return redirect('users:user_detail', user.pk)

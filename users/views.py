@@ -1,6 +1,5 @@
 from django.views import generic
 from django.shortcuts import redirect
-from django.urls import reverse
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 from addresses.models import Address
@@ -16,7 +15,7 @@ class AddToShoppingCartView(LoginRequiredMixin, generic.View):
         tmp = ShoppingCart(user=user, post=post, order_amt=order_amt)
         tmp.save()
 
-        return redirect(reverse('posts:post_list'))
+        return redirect('posts:post_list')
 
 
 class RemoveFromShoppingCartView(LoginRequiredMixin, generic.View):
@@ -27,7 +26,7 @@ class RemoveFromShoppingCartView(LoginRequiredMixin, generic.View):
         if shopping_cart.user == user:
             shopping_cart.delete()
 
-        return redirect(reverse('posts:post_list'))
+        return redirect('posts:post_list')
 
 
 class UserDetailView(LoginRequiredMixin, generic.DetailView):
