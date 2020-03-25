@@ -20,12 +20,10 @@
 }
 
 /* --- user detail menu --- */
-#user-detail-menu {
-    margin-top: 10px;
-}
 .user-detail-menu-tab {
     display: flex;
     height: 40px;
+    margin-top: 10px;
 }
 .user-detail-menu-tab label {
     line-height: 40px;
@@ -42,24 +40,58 @@
     background: white;
 }
 .user-detail-menu-body {
-    position: relative;
-
-    width: 100%; height: 300px;
-}
-
-/* --- user detail menu address --- */
-.user-detail-menu-address {
-    position: absolute;
-    top: 0; left: 0;
-
-    width: 100%; height: 100%;
+    width: 100%;
     padding: 20px;
 
     background: white;
 }
-.user-detail-menu-address-form {
+
+/* --- user detail menu address --- */
+.user-detail-menu-address-form-btn {
     margin-top: 10px;
+
+    cursor: pointer;
 }
-.user-detail-menu-address-form-view {
+
+#user-detail-menu-address-form-overlay {
+    position: fixed;
+    top: 0; left: 0;
+    z-index: 2;
+  
+    width: 100%; height: 100%;
+  
+    background: rgba(0, 0, 0, .3);
+}
+.user-detail-menu-address-form {
+    position: fixed;
+    top: calc(50% - 135px); left: calc(50% - 150px);
+    z-index: 3;
+
+    width: 300px; height: 270px;
+    padding: 10px;
+
+    overflow: hidden;
+    background: white;
+}
+.user-detail-menu-address-form-submit {
+    width: 280px;
     margin-top: 10px;
+
+    text-align: center;
+}
+.user-detail-menu-address-form-submit button {
+    cursor: pointer;
+}
+
+.user-detail-menu-address-form-view-section {
+    margin-top: 15px;
+}
+.user-detail-menu-address-form-view-section p {
+    width: 280px;
+
+    font-size: smaller;
+    font-weight: lighter;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
