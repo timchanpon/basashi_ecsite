@@ -15,7 +15,10 @@ class AddToShoppingCartView(LoginRequiredMixin, generic.View):
         tmp = ShoppingCart(user=user, post=post, order_amt=order_amt)
         tmp.save()
 
-        return redirect('posts:post_list')
+        if kwargs['name'] == 'detail':
+            return redirect('posts:post_detail', post.pk)
+        else:
+            return redirect('posts:post_list')
 
 
 class RemoveFromShoppingCartView(LoginRequiredMixin, generic.View):
