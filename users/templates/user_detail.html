@@ -8,12 +8,15 @@
 {% block contents %}
 <h4>{{ object.username }}</h4>
 
-<div id="json-test">
-  <select v-model="pref">
-    <option v-for="address in addresses.data" :value="address.id">{[ address.pref ]}</option>
+<div id="address-form">
+  <select v-model="prefId" @change="cityId=null; chome=null">
+    <option v-for="item in addresses.data" :value="item.id">{[ item.name ]}</option>
+  </select>
+  <select v-model="cityId">
+    <option v-for="item in city" :value="item.id">{[ item.name ]}</option>
   </select>
   <select>
-    <option v-for="item in city">{[ item.name ]}</option>
+    <option v-for="item in chome" :value="item">{[ item ]}</option>
   </select>
 </div>
 {% endblock %}
@@ -21,18 +24,23 @@
 {% block script %}
 <script>
   new Vue({
-    el: '#json-test',
+    el: '#address-form',
     data: {
       addresses: null,
-      pref: null,
+      prefId: null,
       city: null,
+      cityId: null,
+      chome: null,
     },
     watch: {
-      pref: function() {
-        if (this.pref) {
-          this.city = this.addresses.data[this.pref-1]["city"]
-        } else {
-          this.city = null
+      prefId: function() {
+        if (this.prefId) {
+          this.city = this.addresses.data[this.prefId-1]["city"]
+        }
+      },
+      cityId: function() {
+        if (this.cityId) {
+          this.chome = this.city[this.cityId-1].chome
         }
       },
     },
