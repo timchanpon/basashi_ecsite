@@ -3,6 +3,7 @@ from django.shortcuts import redirect
 from django.urls import reverse
 from django.contrib.auth.mixins import LoginRequiredMixin
 
+from addresses.models import Address
 from posts.models import Post
 from .models import CustomUser, ShoppingCart
 
@@ -32,3 +33,11 @@ class RemoveFromShoppingCartView(LoginRequiredMixin, generic.View):
 class UserDetailView(LoginRequiredMixin, generic.DetailView):
     model = CustomUser
     template_name = 'user_detail.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        user = self.request.user
+        addresses = Address.objects.filter(user=user)
+        context['addresses'] = addresses
+
+        return context
