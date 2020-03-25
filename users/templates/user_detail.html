@@ -9,15 +9,26 @@
 <h4>{{ object.username }}</h4>
 
 <div id="address-form">
-  <select v-model="prefId" @change="cityId=null; chome=null">
-    <option v-for="item in addresses.data" :value="item.id">{[ item.name ]}</option>
-  </select>
-  <select v-model="cityId">
-    <option v-for="item in city" :value="item.id">{[ item.name ]}</option>
-  </select>
-  <select>
-    <option v-for="item in chome" :value="item">{[ item ]}</option>
-  </select>
+  <p>
+    都道府県・市区町村・丁目
+    <select v-model="prefId" @change="cityId=null; chome=null; cityName=''; chomeName=''">
+      <option v-for="item in addresses.data" :value="item.id">{[ item.name ]}</option>
+    </select>
+    <select v-model="cityId" @change="chomeName=''">
+      <option v-for="item in city" :value="item.id">{[ item.name ]}</option>
+    </select>
+    <select v-model="chomeName">
+      <option v-for="item in chome" :value="item">{[ item ]}</option>
+    </select>
+  </p>
+
+  <input name="pref" type="hidden" :value="prefName" required>
+  <input name="city" type="hidden" :value="cityName" required>
+  <input name="chome" type="hidden" :value="chomeName" required>
+  <p>番地・号 <input name="banchi-go" maxlength="10" v-model="banchiGo" :disabled="!chomeName" required></p>
+  <p>建物名・号室 <input name="building" maxlength="30" v-model="building" :disabled="!banchiGo"></p>
+
+  <p>{[ prefName ]}{[ cityName ]}{[ chomeName ]}{[ banchiGo ]} {[ building ]}</p>
 </div>
 {% endblock %}
 
@@ -28,19 +39,28 @@
     data: {
       addresses: null,
       prefId: null,
+      prefName: '',
       city: null,
       cityId: null,
+      cityName: '',
       chome: null,
+      chomeName: '',
+      banchiGo: '',
+      building: '',
     },
     watch: {
       prefId: function() {
         if (this.prefId) {
-          this.city = this.addresses.data[this.prefId-1]["city"]
+          pref = this.addresses.data[this.prefId-1]
+          this.prefName = pref.name
+          this.city = pref["city"]
         }
       },
       cityId: function() {
         if (this.cityId) {
-          this.chome = this.city[this.cityId-1].chome
+          city = this.city[this.cityId-1]
+          this.cityName = city.name
+          this.chome = city.chome
         }
       },
     },
