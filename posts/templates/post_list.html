@@ -58,7 +58,7 @@
     <p class="post-modal-details" v-else>[[ details ]]</p>
     <a class="post-modal-link" :href="'/post-detail/' + pk">商品詳細ページ</a>
     {% if user.is_authenticated %}
-      <form class="post-modal-order-section" method="POST" :action="'/users/add2-shopping-cart/' + pk + '/list/'">
+      <form class="post-modal-order-section" method="POST" :action="'/orders/add2-shopping-cart/' + pk + '/list/'">
         {% csrf_token %}
         <p class="post-modal-order-btn-amt" @click="minusOrderAmt"><i class="fas fa-minus"></i></p>
         <input class="post-modal-order-amt" type="number" name="order_amt" :value="orderAmt" min=0 :max="stockAmt">
