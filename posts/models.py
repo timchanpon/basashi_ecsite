@@ -8,6 +8,9 @@ class Part(models.Model):
     part_name = models.CharField(verbose_name='部位名', max_length=20)
     how_to_eat = models.TextField(verbose_name='賞味方法', max_length=50, blank=True, null=True)
 
+    created_at = models.DateTimeField(verbose_name='作成日時', auto_now_add=True)
+    updated_at = models.DateTimeField(verbose_name='更新日時', auto_now=True)
+
     class Meta:
         verbose_name_plural = '部位モデル'
 

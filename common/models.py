@@ -7,6 +7,9 @@ class SiteSettings(models.Model):
     site_name = models.CharField(verbose_name='サイト名', max_length=10, unique=True)
     is_selected = models.BooleanField(verbose_name='有効化', default=False, unique=True)
 
+    created_at = models.DateTimeField(verbose_name='作成日時', auto_now_add=True)
+    updated_at = models.DateTimeField(verbose_name='更新日時', auto_now=True)
+
     class Meta:
         verbose_name_plural = 'サイト設定モデル'
 
