@@ -1,8 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 
-from posts.models import Post
-
 
 class CustomUser(AbstractUser):
     """拡張ユーザーモデル"""
