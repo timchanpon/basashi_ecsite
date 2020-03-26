@@ -7,16 +7,16 @@ register = template.Library()
 
 
 @register.filter
-def get_shopping_cart(username):
-    user = CustomUser.objects.get(username=username)
+def get_shopping_cart(pk):
+    user = CustomUser.objects.get(pk=pk)
     cart_obj_list = ShoppingCart.objects.filter(user=user)
 
     return cart_obj_list
 
 
 @register.filter
-def calc_total_order_price(username):
-    user = CustomUser.objects.get(username=username)
+def calc_total_order_price(pk):
+    user = CustomUser.objects.get(pk=pk)
     cart_obj_list = ShoppingCart.objects.filter(user=user)
     total_price = 0
     for cart_obj in cart_obj_list:

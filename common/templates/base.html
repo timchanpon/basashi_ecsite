@@ -60,7 +60,7 @@
 
         <div class="shopping-cart-contents-field">
           {% if user.is_authenticated %}
-            {% with user.get_username|get_shopping_cart as cart_obj_list %}
+            {% with user.pk|get_shopping_cart as cart_obj_list %}
               {% for cart_obj in cart_obj_list %}
                 <shopping-cart-component
                   pk="{{ cart_obj.pk }}"
@@ -75,7 +75,7 @@
                 <p>買い物かごが空です。</p>
               {% endfor %}
             {% endwith %}
-            {% with user.get_username|calc_total_order_price as total_price %}
+            {% with user.pk|calc_total_order_price as total_price %}
               <p class="shopping-cart-total-price">合計金額：{{ total_price }}円</p>
             {% endwith %}
           {% else %}
