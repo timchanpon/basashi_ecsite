@@ -2,7 +2,7 @@ from django import template
 
 from ..models import SiteSettings
 from users.models import CustomUser
-from orders.models import Order
+from orders.models import OrderItem
 
 register = template.Library()
 
@@ -10,7 +10,7 @@ register = template.Library()
 @register.filter
 def get_shopping_cart(pk):
     user = CustomUser.objects.get(pk=pk)
-    cart_obj_list = Order.objects.filter(user=user, status='in_cart')
+    cart_obj_list = OrderItem.objects.filter(user=user, status='in_cart')
 
     return cart_obj_list
 
@@ -18,7 +18,7 @@ def get_shopping_cart(pk):
 @register.filter
 def calc_total_order_price(pk):
     user = CustomUser.objects.get(pk=pk)
-    cart_obj_list = Order.objects.filter(user=user, status='in_cart')
+    cart_obj_list = OrderItem.objects.filter(user=user, status='in_cart')
     total_price = 0
     for cart_obj in cart_obj_list:
         price = cart_obj.post.price
