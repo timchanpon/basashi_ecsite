@@ -1,6 +1,6 @@
 from django.views import generic
 from django.shortcuts import redirect
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 
 from addresses.models import Address
 from posts.models import Post
@@ -32,9 +32,14 @@ class RemoveFromShoppingCartView(LoginRequiredMixin, generic.View):
         return redirect('posts:post_list')
 
 
-class UserDetailView(LoginRequiredMixin, generic.DetailView):
+class UserDetailView(UserPassesTestMixin, generic.DetailView):
     model = CustomUser
     template_name = 'user_detail.html'
+
+    def test_func(self):
+        user = self.request.user
+
+        return user.pk == self.kwargs['pk']
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
