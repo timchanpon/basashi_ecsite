@@ -10,7 +10,7 @@ register = template.Library()
 @register.filter
 def get_shopping_cart(pk):
     user = CustomUser.objects.get(pk=pk)
-    cart_obj_list = OrderItem.objects.filter(user=user, status='in_cart')
+    cart_obj_list = OrderItem.objects.filter(user=user, in_cart=True)
 
     return cart_obj_list
 
@@ -18,7 +18,7 @@ def get_shopping_cart(pk):
 @register.filter
 def calc_total_order_price(pk):
     user = CustomUser.objects.get(pk=pk)
-    cart_obj_list = OrderItem.objects.filter(user=user, status='in_cart')
+    cart_obj_list = OrderItem.objects.filter(user=user, in_cart=True)
     total_price = 0
     for cart_obj in cart_obj_list:
         price = cart_obj.post.price
