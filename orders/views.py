@@ -1,5 +1,5 @@
 from django.views import generic
-from django.shortcuts import redirect
+from django.shortcuts import redirect, render
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 from posts.models import Post
@@ -43,3 +43,17 @@ class FillOrderView(LoginRequiredMixin, generic.TemplateView):
         context['cart_obj_list'] = cart_obj_list
 
         return context
+
+
+class ConfirmOrderView(LoginRequiredMixin, generic.View):
+    def post(self, request):
+        template_name = 'confirm_order.html'
+        post_obj = request.POST['sample_select']
+        user = self.request.user
+
+        context = {
+            'post_obj': post_obj,
+            'user_obj': user,
+        }
+
+        return render(request, template_name, context)

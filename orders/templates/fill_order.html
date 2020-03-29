@@ -9,6 +9,14 @@
 {% for cart_obj in cart_obj_list %}
   <p>{{ cart_obj.post.part.part_name }}</p>
 {% endfor %}
+<form method="POST" action="{% url 'orders:confirm_order' %}">
+  {% csrf_token %}
+  <select name="sample_select">
+    <option value="opstion-1">option-1</option>
+    <option value="opstion-2">option-2</option>
+  </select>
+  <button type="submit">送信</button>
+</form>
 {% endblock %}
 
 {% block script %}
