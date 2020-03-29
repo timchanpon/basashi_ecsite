@@ -3,6 +3,7 @@ from django.shortcuts import redirect, render
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 from posts.models import Post
+from addresses.models import Address
 from .models import OrderItem
 
 
@@ -39,21 +40,25 @@ class FillOrderView(LoginRequiredMixin, generic.TemplateView):
 
         user = self.request.user
         cart_obj_list = OrderItem.objects.filter(user=user, in_cart=True)
+        address_list = Address.objects.filter(user=user)
 
         context['cart_obj_list'] = cart_obj_list
+        context['address_list'] = address_list
 
         return context
 
 
 class ConfirmOrderView(LoginRequiredMixin, generic.View):
     def post(self, request):
-        template_name = 'confirm_order.html'
-        post_obj = request.POST['sample_select']
         user = self.request.user
+        address_pk = request.POST['address_pk']
+
+        cart_obj_list = OrderItem.objects.filter(user=user, in_cart=True)
+        address = Address.objects.get(pk=address_pk, user=user)
 
         context = {
-            'post_obj': post_obj,
-            'user_obj': user,
+            'cart_obj_list': cart_obj_list,
+            'address': address,
         }
 
-        return render(request, template_name, context)
+        return render(request, 'confirm_order.html', context)

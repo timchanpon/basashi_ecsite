@@ -23,7 +23,11 @@
   <div class="user-detail-menu-body">
     <div v-if="tabSelected=='address'">
       {% for address in addresses %}
-        <p>{{ address.address_type }}：{{ address.pref }}{{ address.city }}{{ address.chome }}{{ address.banchi_go }} {{ address.building }}</p>
+        {% if address.building %}
+          <p>{{ address.address_type }}：{{ address.pref }}{{ address.city }}{{ address.chome }}{{ address.banchi_go }} {{ address.building }}</p>
+        {% else %}
+          <p>{{ address.address_type }}：{{ address.pref }}{{ address.city }}{{ address.chome }}{{ address.banchi_go }}</p>
+        {% endif %}
       {% empty %}
         <p>住所が登録されていません。</p>
       {% endfor %}

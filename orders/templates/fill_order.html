@@ -11,11 +11,12 @@
 {% endfor %}
 <form method="POST" action="{% url 'orders:confirm_order' %}">
   {% csrf_token %}
-  <select name="sample_select">
-    <option value="opstion-1">option-1</option>
-    <option value="opstion-2">option-2</option>
+  <select name="address_pk">
+    {% for address in address_list %}
+      <option value="{{ address.pk }}">{{ address.address_type }}</option>
+    {% endfor %}
   </select>
-  <button type="submit">送信</button>
+  <button type="submit">注文内容の確認</button>
 </form>
 {% endblock %}
 
