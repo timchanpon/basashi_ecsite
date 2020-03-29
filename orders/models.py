@@ -21,16 +21,16 @@ class Order(models.Model):
         verbose_name_plural = '注文モデル'
 
     def __str__(self):
-        user = self.user.username
+        user = self.user
         ordered_at = self.ordered_at
         if self.has_delivered:
-            status = '(delivered)'
+            status = ' (delivered)'
         elif self.has_cancelled:
-            status = '(cancelled)'
+            status = ' (cancelled)'
         else:
             status = ''
 
-        return user + ordered_at + status
+        return f'{user} {ordered_at}' + status
 
 
 class OrderItem(models.Model):
@@ -53,8 +53,8 @@ class OrderItem(models.Model):
         post = self.post
         order_amt = self.order_amt
         if self.in_cart:
-            status = '(in_cart)'
+            status = ' (in_cart)'
         else:
             status = ''
 
-        return f'{user} {post} {order_amt}個 {status}'
+        return f'{user} {post} {order_amt}個' + status
