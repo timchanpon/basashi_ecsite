@@ -61,22 +61,25 @@
         <div class="shopping-cart-contents-field">
           {% if user.is_authenticated %}
             {% with user.pk|get_shopping_cart as cart_obj_list %}
-              {% for cart_obj in cart_obj_list %}
-                <shopping-cart-component
-                  pk="{{ cart_obj.pk }}"
-                  post-pk="{{ cart_obj.post.pk }}"
-                  post-img-url="{{ cart_obj.post.image.url }}"
-                  post-part-name="{{ cart_obj.post.part.part_name }}"
-                  post-num-grams="{{ cart_obj.post.num_grams }}"
-                  post-price="{{ cart_obj.post.price }}"
-                  order-amt="{{ cart_obj.order_amt }}"
-                ></shopping-cart-component>
-              {% empty %}
+              {% if cart_obj_list %}
+                {% for cart_obj in cart_obj_list %}
+                  <shopping-cart-component
+                    pk="{{ cart_obj.pk }}"
+                    post-pk="{{ cart_obj.post.pk }}"
+                    post-img-url="{{ cart_obj.post.image.url }}"
+                    post-part-name="{{ cart_obj.post.part.part_name }}"
+                    post-num-grams="{{ cart_obj.post.num_grams }}"
+                    post-price="{{ cart_obj.post.price }}"
+                    order-amt="{{ cart_obj.order_amt }}"
+                  ></shopping-cart-component>
+                {% endfor %}
+                {% with user.pk|calc_total_order_price as total_price %}
+                  <p class="shopping-cart-total-price">合計金額：{{ total_price }}円</p>
+                {% endwith %}
+                <a href="{% url 'orders:fill_order' %}">注文画面へ進む</a>
+              {% else %}
                 <p>買い物かごが空です。</p>
-              {% endfor %}
-            {% endwith %}
-            {% with user.pk|calc_total_order_price as total_price %}
-              <p class="shopping-cart-total-price">合計金額：{{ total_price }}円</p>
+              {% endif %}
             {% endwith %}
           {% else %}
             <p>ログインしていないため、買い物かごを表示できません。</p>

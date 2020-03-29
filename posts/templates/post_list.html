@@ -86,7 +86,7 @@
     data: function() {
       return {
         isShowPM: false,
-        orderAmt: 0,
+        orderAmt: 1,
         orderAmtErrorMessage: '',
       }
     },
@@ -109,8 +109,8 @@
     },
     watch: {
       orderAmt: function() {
-        if (this.orderAmt < 0) {
-          this.orderAmt = 0
+        if (this.orderAmt < 1) {
+          this.orderAmt = 1
         }
         if (this.orderAmt > this.stockAmt) {
           this.orderAmt = this.stockAmt

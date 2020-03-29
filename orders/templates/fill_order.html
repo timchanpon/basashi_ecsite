@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}注文画面{% endblock %}
+{% block head %}
+{% endblock %}
+
+{% block contents %}
+{% for cart_obj in cart_obj_list %}
+  <p>{{ cart_obj.post.part.part_name }}</p>
+{% endfor %}
+{% endblock %}
+
+{% block script %}
+{% endblock %}

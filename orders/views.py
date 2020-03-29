@@ -29,3 +29,17 @@ class RemoveFromShoppingCartView(LoginRequiredMixin, generic.View):
             order.delete()
 
         return redirect('posts:post_list')
+
+
+class FillOrderView(LoginRequiredMixin, generic.TemplateView):
+    template_name = 'fill_order.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        user = self.request.user
+        cart_obj_list = OrderItem.objects.filter(user=user, in_cart=True)
+
+        context['cart_obj_list'] = cart_obj_list
+
+        return context
