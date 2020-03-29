@@ -1,14 +1,42 @@
 from django.db import models
 
 from users.models import CustomUser
+from addresses.models import Address
 from posts.models import Post
+
+
+class Order(models.Model):
+    """注文モデル"""
+
+    user = models.ForeignKey(CustomUser, verbose_name='ユーザー', on_delete=models.PROTECT)
+    address = models.ForeignKey(Address, verbose_name='住所', on_delete=models.PROTECT)
+    has_delivered = models.BooleanField(verbose_name='配達済みか否か', default=False, editable=False)
+    has_cancelled = models.BooleanField(verbose_name='キャンセル済みか否か', default=False, editable=False)
+
+    ordered_at = models.DateTimeField(verbose_name='注文日時', auto_now_add=True)
+    ended_at = models.DateTimeField(verbose_name='完了日時', blank=True, null=True, editable=False)
+
+    class Meta:
+        verbose_name_plural = '注文モデル'
+
+    def __str__(self):
+        user = self.user.username
+        ordered_at = self.ordered_at
+        if self.has_delivered:
+            status = '(delivered)'
+        elif self.has_cancelled:
+            status = '(cancelled)'
+        else:
+            status = ''
+
+        return user + ordered_at + status
 
 
 class OrderItem(models.Model):
     """注文アイテムモデル"""
 
-    user = models.ForeignKey(CustomUser, verbose_name='ユーザー', on_delete=models.CASCADE)
-    post = models.ForeignKey(Post, verbose_name='ポスト', on_delete=models.CASCADE)
+    user = models.ForeignKey(CustomUser, verbose_name='ユーザー', on_delete=models.PROTECT)
+    post = models.ForeignKey(Post, verbose_name='ポスト', on_delete=models.PROTECT)
     order_amt = models.PositiveIntegerField(verbose_name='購入数', default=0)
     in_cart = models.BooleanField(verbose_name='買い物かごの中か否か', default=True, editable=False)
 
@@ -23,8 +51,8 @@ class OrderItem(models.Model):
         post = self.post
         order_amt = self.order_amt
         if self.in_cart:
-            status = 'in_cart'
+            status = '(in_cart)'
         else:
             status = ''
 
-        return f'{user} {post} {order_amt}個 ({status})'
+        return f'{user} {post} {order_amt}個 {status}'
