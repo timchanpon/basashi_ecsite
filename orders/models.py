@@ -14,6 +14,7 @@ class Order(models.Model):
     has_cancelled = models.BooleanField(verbose_name='キャンセル済みか否か', default=False, editable=False)
 
     ordered_at = models.DateTimeField(verbose_name='注文日時', auto_now_add=True)
+    updated_at = models.DateTimeField(verbose_name='更新日時', auto_now=True)
     ended_at = models.DateTimeField(verbose_name='完了日時', blank=True, null=True, editable=False)
 
     class Meta:
@@ -37,6 +38,7 @@ class OrderItem(models.Model):
 
     user = models.ForeignKey(CustomUser, verbose_name='ユーザー', on_delete=models.PROTECT)
     post = models.ForeignKey(Post, verbose_name='ポスト', on_delete=models.PROTECT)
+    order = models.ForeignKey(Order, verbose_name='注文', on_delete=models.PROTECT, blank=True, null=True, editable=False)
     order_amt = models.PositiveIntegerField(verbose_name='購入数', default=0)
     in_cart = models.BooleanField(verbose_name='買い物かごの中か否か', default=True, editable=False)
 
