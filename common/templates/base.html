@@ -76,7 +76,7 @@
                 {% with user.pk|calc_total_order_price as total_price %}
                   <p class="shopping-cart-total-price">合計金額：{{ total_price }}円</p>
                 {% endwith %}
-                <a href="{% url 'orders:fill_order' %}">注文画面へ進む</a>
+                <h4 class="shopping-cart-submit"><a href="{% url 'orders:fill_order' %}">注文画面へ進む</a></h4>
               {% else %}
                 <p>買い物かごが空です。</p>
               {% endif %}

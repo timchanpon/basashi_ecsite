@@ -250,6 +250,15 @@ nav {
 
     text-align: center;
 }
+.shopping-cart-submit {
+    width: 100%;
+    margin-top: 15px;
+
+    text-align: center;
+}
+.shopping-cart-submit a {
+    color: black;
+}
 
 .shopping-cart-delete-modal-overlay {
     position: fixed;

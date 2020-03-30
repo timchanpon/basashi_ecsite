@@ -25,7 +25,7 @@
     {% endfor %}
     <button class="fill-order-form-submit" type="submit" :disabled="!isCheckedAF">注文内容の確認へすすむ</button>
   {% else %}
-    <p>住所が登録されていません。</p>
+    <p>住所が未登録です。希望配達先の住所を登録してください。</p>
     <button class="fill-order-add-address-form-btn" type="button" @click="isShowAF=true">住所を登録</button>
   {% endif %}
 </form>
