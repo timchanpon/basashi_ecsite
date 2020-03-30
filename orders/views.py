@@ -39,10 +39,8 @@ class FillOrderView(LoginRequiredMixin, generic.TemplateView):
         context = super().get_context_data(**kwargs)
 
         user = self.request.user
-        cart_obj_list = OrderItem.objects.filter(user=user, in_cart=True)
         address_list = Address.objects.filter(user=user)
 
-        context['cart_obj_list'] = cart_obj_list
         context['address_list'] = address_list
 
         return context

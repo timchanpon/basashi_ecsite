@@ -3,22 +3,27 @@
 
 {% block title %}注文画面{% endblock %}
 {% block head %}
+<link rel="stylesheet" href="{% static 'css/fill_order.css' %}">
 {% endblock %}
 
 {% block contents %}
-{% for cart_obj in cart_obj_list %}
-  <p>{{ cart_obj.post.part.part_name }}</p>
-{% endfor %}
-<form method="POST" action="{% url 'orders:confirm_order' %}">
+<h4>配達先住所を選択してください。</h4>
+<form class="fill-order-address-form" method="POST" action="{% url 'orders:confirm_order' %}">
   {% csrf_token %}
-  <select name="address_pk">
-    {% for address in address_list %}
-      <option value="{{ address.pk }}">{{ address.address_type }}</option>
-    {% endfor %}
-  </select>
+  {% for address in address_list %}
+    {% if address == address_list.0 %}
+      <input id="address-{{ address.pk }}" name="address_pk" type="radio" value="{{ address.pk }}" checked>
+    {% else %}
+      <input id="address-{{ address.pk }}" name="address_pk" type="radio" value="{{ address.pk }}">
+    {% endif %}
+    <label for="address-{{ address.pk }}">
+      {% if address.building %}
+        <p>{{ address.address_type }}：{{ address.pref }}{{ address.city }}{{ address.chome }}{{ address.banchi_go }} {{ address.building }}</p>
+      {% else %}
+        <p>{{ address.address_type }}：{{ address.pref }}{{ address.city }}{{ address.chome }}{{ address.banchi_go }}</p>
+      {% endif %}
+    </label>
+  {% endfor %}
   <button type="submit">注文内容の確認</button>
 </form>
-{% endblock %}
-
-{% block script %}
 {% endblock %}

@@ -1,0 +1,16 @@
+@charset "UTF-8";
+
+
+/* fill order
+------------------------- */
+.fill-order-address-form input {
+    display: none;
+}
+.fill-order-address-form p {
+    margin: 5px; padding: 5px;
+
+    cursor: pointer;
+}
+.fill-order-address-form input:checked + label p {
+    border: solid 1px black;
+}
