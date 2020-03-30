@@ -12,20 +12,22 @@
 <h4>配達先住所を選択してください。</h4>
 <form class="fill-order-form" method="POST" action="{% url 'orders:confirm_order' %}">
   {% csrf_token %}
-  {% for address in address_list %}
-    <input id="address-{{ address.pk }}" name="address_pk" type="radio" value="{{ address.pk }}" v-model="isCheckedAF">
-    <label class="fill-order-form-address-label" for="address-{{ address.pk }}">
-      {% if address.building %}
-        <p>{{ address.address_type }}：{{ address.pref }}{{ address.city }}{{ address.chome }}{{ address.banchi_go }} {{ address.building }}</p>
-      {% else %}
-        <p>{{ address.address_type }}：{{ address.pref }}{{ address.city }}{{ address.chome }}{{ address.banchi_go }}</p>
-      {% endif %}
-    </label>
-  {% empty %}
+  {% if address_list %}
+    {% for address in address_list %}
+      <input id="address-{{ address.pk }}" name="address_pk" type="radio" value="{{ address.pk }}" v-model="isCheckedAF">
+      <label class="fill-order-form-address-label" for="address-{{ address.pk }}">
+        {% if address.building %}
+          <p>{{ address.address_type }}：{{ address.pref }}{{ address.city }}{{ address.chome }}{{ address.banchi_go }} {{ address.building }}</p>
+        {% else %}
+          <p>{{ address.address_type }}：{{ address.pref }}{{ address.city }}{{ address.chome }}{{ address.banchi_go }}</p>
+        {% endif %}
+      </label>
+    {% endfor %}
+    <button class="fill-order-form-submit" type="submit" :disabled="!isCheckedAF">注文内容の確認へすすむ</button>
+  {% else %}
     <p>住所が登録されていません。</p>
     <button class="fill-order-add-address-form-btn" type="button" @click="isShowAF=true">住所を登録</button>
-  {% endfor %}
-  <button class="fill-order-form-submit" type="submit" :disabled="!isCheckedAF">注文内容の確認</button>
+  {% endif %}
 </form>
 
 <div id="fill-order-add-address-form-overlay" v-if="isShowAF" @click="isShowAF=false"></div>
