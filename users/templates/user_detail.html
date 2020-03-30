@@ -20,7 +20,7 @@
     <input id="tab-order" type="radio" value="order" v-model="tabSelected">
     <label for="tab-order">注文</label>
     <input id="tab-order-history" type="radio" value="order_history" v-model="tabSelected">
-    <label for="tab-order-history">履歴</label>
+    <label for="tab-order-history">過去の注文</label>
   </div>
   <div class="user-detail-menu-body">
     <div v-if="tabSelected=='address'">
@@ -76,6 +76,18 @@
         <p>{{ order.ordered_at }} {{ order.address.address_type }}</p>
       {% empty %}
         <p>注文がありません。</p>
+      {% endfor %}
+    </div>
+
+    <div v-if="tabSelected=='order_history'">
+      {% for order in orders_ended %}
+        {% if order.status == 'delivered' %}
+          <p>{{ order.ended_at }} {{ order.address.address_type }} 配達済み</p>
+        {% elif order.status == 'cancelled' %}
+          <p>{{ order.ended_at }} {{ order.address.address_type }} キャンセル</p>
+        {% endif %}
+      {% empty %}
+        <p>過去の注文がありません。</p>
       {% endfor %}
     </div>
   </div>

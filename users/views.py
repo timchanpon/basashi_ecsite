@@ -20,10 +20,11 @@ class UserDetailView(UserPassesTestMixin, generic.DetailView):
         user = self.request.user
 
         addresses = Address.objects.filter(user=user)
-        orders = Order.objects.filter(user=user, status='ordered').order_by('-ordered_at')
-        # orders_ended = Order.objects.filter(user=user, status='').order_by('-ordered_at')
+        orders = Order.objects.filter(user=user, has_ended=False).order_by('-ordered_at')
+        orders_ended = Order.objects.filter(user=user, has_ended=True).order_by('-ended_at')
 
         context['addresses'] = addresses
         context['orders'] = orders
+        context['orders_ended'] = orders_ended
 
         return context
