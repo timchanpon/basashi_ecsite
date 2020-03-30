@@ -17,8 +17,10 @@
   <div class="user-detail-menu-tab">
     <input id="tab-address" type="radio" value="address" v-model="tabSelected">
     <label for="tab-address">住所</label>
+    <input id="tab-order" type="radio" value="order" v-model="tabSelected">
+    <label for="tab-order">注文</label>
     <input id="tab-order-history" type="radio" value="order_history" v-model="tabSelected">
-    <label for="tab-order-history">購入履歴</label>
+    <label for="tab-order-history">履歴</label>
   </div>
   <div class="user-detail-menu-body">
     <div v-if="tabSelected=='address'">
@@ -67,6 +69,14 @@
           <p>{[ building ]}</p>
         </div>
       </div>
+    </div>
+
+    <div v-if="tabSelected=='order'">
+      {% for order in orders %}
+        <p>{{ order.ordered_at }} {{ order.address.address_type }}</p>
+      {% empty %}
+        <p>注文がありません。</p>
+      {% endfor %}
     </div>
   </div>
 </div>
