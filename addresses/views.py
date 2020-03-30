@@ -6,7 +6,7 @@ from .models import Address
 
 
 class AddAddressView(LoginRequiredMixin, generic.View):
-    def post(self, request):
+    def post(self, request, **kwargs):
         user = self.request.user
         pref = request.POST['pref']
         city = request.POST['city']
@@ -23,4 +23,7 @@ class AddAddressView(LoginRequiredMixin, generic.View):
 
         tmp.save()
 
-        return redirect('users:user_detail', user.pk)
+        if kwargs['from'] == 'user_detail':
+            return redirect('users:user_detail', user.pk)
+        elif kwargs['from'] == 'fill_order':
+            return redirect('orders:fill_order')

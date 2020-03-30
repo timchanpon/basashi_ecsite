@@ -5,5 +5,5 @@ from . import views
 
 app_name = 'addresses'
 urlpatterns = [
-    path('add-address', views.AddAddressView.as_view(), name="add_address"),
+    path('add-address/<str:from>/', views.AddAddressView.as_view(), name="add_address"),
 ]

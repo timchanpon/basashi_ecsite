@@ -15,9 +15,9 @@ class AddToShoppingCartView(LoginRequiredMixin, generic.View):
         tmp = OrderItem(user=user, post=post, order_amt=order_amt)
         tmp.save()
 
-        if kwargs['name'] == 'detail':
+        if kwargs['from'] == 'post_detail':
             return redirect('posts:post_detail', post.pk)
-        else:
+        elif kwargs['from'] == 'post_list':
             return redirect('posts:post_list')
 
 

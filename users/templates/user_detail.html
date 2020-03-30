@@ -54,7 +54,7 @@
             <option v-for="item in chome" :value="item">{[ item ]}</option>
           </select>
         </p>
-        <form method="POST" action="{% url 'addresses:add_address' %}">
+        <form method="POST" action="{% url 'addresses:add_address' 'user_detail' %}">
           {% csrf_token %}
           <input name="pref" type="hidden" :value="prefName" required>
           <input name="city" type="hidden" :value="cityName" required>
