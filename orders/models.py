@@ -10,7 +10,8 @@ class Order(models.Model):
 
     user = models.ForeignKey(CustomUser, verbose_name='ユーザー', on_delete=models.PROTECT)
     address = models.ForeignKey(Address, verbose_name='住所', on_delete=models.PROTECT)
-    status = models.CharField(verbose_name='ステータス', max_length=10, default='ordered')
+    has_ended = models.BooleanField(verbose_name='終了済みか否か', default=False, editable=False)
+    status = models.CharField(verbose_name='ステータス', max_length=10, blank=True, null=True)
 
     ordered_at = models.DateTimeField(verbose_name='注文日時', auto_now_add=True)
     updated_at = models.DateTimeField(verbose_name='更新日時', auto_now=True)
