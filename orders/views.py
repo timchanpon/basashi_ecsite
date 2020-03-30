@@ -4,7 +4,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 
 from posts.models import Post
 from addresses.models import Address
-from .models import OrderItem
+from .models import Order, OrderItem
 
 
 class AddToShoppingCartView(LoginRequiredMixin, generic.View):
@@ -52,11 +52,32 @@ class ConfirmOrderView(LoginRequiredMixin, generic.View):
         address_pk = request.POST['address_pk']
 
         cart_obj_list = OrderItem.objects.filter(user=user, in_cart=True)
+        total_price = 0
+        for cart_obj in cart_obj_list:
+            total_price += cart_obj.post.price * cart_obj.order_amt
         address = Address.objects.get(pk=address_pk, user=user)
 
         context = {
             'cart_obj_list': cart_obj_list,
+            'total_price': total_price,
             'address': address,
         }
 
         return render(request, 'confirm_order.html', context)
+
+
+class CreateOrderView(LoginRequiredMixin, generic.View):
+    def post(self, request):
+        user = self.request.user
+        address_pk = request.POST['address_pk']
+        address = Address.objects.get(pk=address_pk, user=user)
+        cart_obj_list = OrderItem.objects.filter(user=user, in_cart=True)
+
+        order = Order(user=user, address=address)
+        order.save()
+        for cart_obj in cart_obj_list:
+            cart_obj.order = order
+            cart_obj.in_cart = False
+            cart_obj.save()
+
+        return redirect('posts:post_list')

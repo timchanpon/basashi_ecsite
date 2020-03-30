@@ -14,3 +14,6 @@
 .fill-order-address-form input:checked + label p {
     border: solid 1px black;
 }
+.fill-order-address-form button {
+    cursor: pointer;
+}

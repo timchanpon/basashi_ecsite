@@ -1,16 +1,22 @@
 {% extends 'base.html' %}
-{% load static %}
-
 {% block title %}注文確認{% endblock %}
-{% block head %}
-{% endblock %}
 
 {% block contents %}
+<h4>注文商品</h4>
 {% for cart_obj in cart_obj_list %}
-  <p>{{ cart_obj.post.part.part_name }}</p>
+  <p>{{ cart_obj.post.part.part_name }}{{ cart_obj.post.num_grams }}g {{ cart_obj.post.price }}円 ×{{ cart_obj.order_amt }}</p>
 {% endfor %}
-{{ address.address_type }}
-{% endblock %}
-
-{% block script %}
+<h4>合計金額</h4>
+<p>{{ total_price }}円</p>
+<h4>配達先</h4>
+{% if address.building %}
+  <p>{{ address.address_type }}：{{ address.pref }}{{ address.city }}{{ address.chome }}{{ address.banchi_go }} {{ address.building }}</p>
+{% else %}
+  <p>{{ address.address_type }}：{{ address.pref }}{{ address.city }}{{ address.chome }}{{ address.banchi_go }}</p>
+{% endif %}
+<form method="POST" action="{% url 'orders:create_order' %}">
+  {% csrf_token %}
+  <input type="hidden" name="address_pk" value="{{ address.pk }}">
+  <button type="submit">注文確定</button>
+</form>
 {% endblock %}
