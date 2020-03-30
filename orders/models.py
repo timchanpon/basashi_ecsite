@@ -23,9 +23,9 @@ class Order(models.Model):
     def __str__(self):
         user = self.user
         ordered_at = self.ordered_at
-        if self.has_delivered:
+        if self.status == 'delivered':
             status = ' (delivered)'
-        elif self.has_cancelled:
+        elif self.status == 'cancelled':
             status = ' (cancelled)'
         else:
             status = ''
