@@ -76,6 +76,10 @@ class CreateOrderView(LoginRequiredMixin, generic.View):
         order = Order(user=user, address=address)
         order.save()
         for cart_obj in cart_obj_list:
+            post = cart_obj.post
+            post.stock_amt -= cart_obj.order_amt
+            post.save()
+
             cart_obj.order = order
             cart_obj.in_cart = False
             cart_obj.save()
