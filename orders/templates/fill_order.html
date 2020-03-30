@@ -4,26 +4,108 @@
 {% block title %}注文画面{% endblock %}
 {% block head %}
 <link rel="stylesheet" href="{% static 'css/fill_order.css' %}">
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 {% endblock %}
 
 {% block contents %}
+<div id="fill-order">
 <h4>配達先住所を選択してください。</h4>
-<form class="fill-order-address-form" method="POST" action="{% url 'orders:confirm_order' %}">
+<form class="fill-order-form" method="POST" action="{% url 'orders:confirm_order' %}">
   {% csrf_token %}
   {% for address in address_list %}
-    {% if address == address_list.0 %}
-      <input id="address-{{ address.pk }}" name="address_pk" type="radio" value="{{ address.pk }}" checked>
-    {% else %}
-      <input id="address-{{ address.pk }}" name="address_pk" type="radio" value="{{ address.pk }}">
-    {% endif %}
-    <label for="address-{{ address.pk }}">
+    <input id="address-{{ address.pk }}" name="address_pk" type="radio" value="{{ address.pk }}" v-model="isCheckedAF">
+    <label class="fill-order-form-address-label" for="address-{{ address.pk }}">
       {% if address.building %}
         <p>{{ address.address_type }}：{{ address.pref }}{{ address.city }}{{ address.chome }}{{ address.banchi_go }} {{ address.building }}</p>
       {% else %}
         <p>{{ address.address_type }}：{{ address.pref }}{{ address.city }}{{ address.chome }}{{ address.banchi_go }}</p>
       {% endif %}
     </label>
+  {% empty %}
+    <p>住所が登録されていません。</p>
+    <button class="fill-order-add-address-form-btn" type="button" @click="isShowAF=true">住所を登録</button>
   {% endfor %}
-  <button type="submit">注文内容の確認</button>
+  <button class="fill-order-form-submit" type="submit" :disabled="!isCheckedAF">注文内容の確認</button>
 </form>
+
+<div id="fill-order-add-address-form-overlay" v-if="isShowAF" @click="isShowAF=false"></div>
+<div class="fill-order-add-address-form" v-if="isShowAF">
+  <p>
+    都道府県
+    <select v-model="prefId" @change="cityId=null; chome=null; cityName=''; chomeName=''">
+      <option v-for="item in addresses.data" :value="item.id">{[ item.name ]}</option>
+    </select>
+  </p>
+  <p>
+    市区町村
+    <select v-model="cityId" @change="chomeName=''" :disabled="!prefId">
+      <option v-for="item in city" :value="item.id">{[ item.name ]}</option>
+    </select>
+  </p>
+  <p>
+    丁目
+    <select v-model="chomeName" :disabled="!cityId">
+      <option v-for="item in chome" :value="item">{[ item ]}</option>
+    </select>
+  </p>
+  <form method="POST" action="{% url 'addresses:add_address' 'fill_order' %}">
+    {% csrf_token %}
+    <input name="pref" type="hidden" :value="prefName" required>
+    <input name="city" type="hidden" :value="cityName" required>
+    <input name="chome" type="hidden" :value="chomeName" required>
+    <p>番地・号 <input name="banchi_go" maxlength="10" v-model="banchiGo" :disabled="!chomeName" required></p>
+    <p>建物名・号室 <input name="building" maxlength="30" v-model="building" :disabled="!banchiGo"></p>
+    <p>住所区分 <input name="address_type" maxlength="10" placeholder="例）自宅"></p>
+    <p class="fill-order-add-address-form-submit"><button type="submit" :disabled="!banchiGo">登録</button></p>
+  </form>
+  <div class="fill-order-add-address-form-view-section">
+    <p>{[ prefName ]}{[ cityName ]}{[ chomeName ]}{[ banchiGo ]}</p>
+    <p>{[ building ]}</p>
+  </div>
+</div>
+</div>
+{% endblock %}
+
+{% block script %}
+<script>
+  new Vue({
+    el: '#fill-order',
+    data: {
+      isCheckedAF: '',
+
+      // add address form
+      isShowAF: false,
+      addresses: null,
+      prefId: null,
+      prefName: '',
+      city: null,
+      cityId: null,
+      cityName: '',
+      chome: null,
+      chomeName: '',
+      banchiGo: '',
+      building: '',
+    },
+    watch: {
+      prefId: function() {
+        if (this.prefId) {
+          pref = this.addresses.data[this.prefId-1]
+          this.prefName = pref.name
+          this.city = pref["city"]
+        }
+      },
+      cityId: function() {
+        if (this.cityId) {
+          city = this.city[this.cityId-1]
+          this.cityName = city.name
+          this.chome = city.chome
+        }
+      },
+    },
+    mounted: function() {
+      axios.get("/static/json/addresses.json").then(response => (this.addresses = response))
+    },
+    delimiters: ['{[', ']}'],
+  })
+</script>
 {% endblock %}

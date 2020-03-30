@@ -3,17 +3,75 @@
 
 /* fill order
 ------------------------- */
-.fill-order-address-form input {
+.fill-order-form input[type=radio] {
     display: none;
 }
-.fill-order-address-form p {
+.fill-order-form-address-label p {
     margin: 5px; padding: 5px;
 
     cursor: pointer;
 }
-.fill-order-address-form input:checked + label p {
+.fill-order-form input[type=radio]:checked + label p {
     border: solid 1px black;
 }
-.fill-order-address-form button {
+.fill-order-form p {
+    margin-top: 5px;
+}
+.fill-order-form-submit {
+    margin-top: 10px;
+
     cursor: pointer;
+}
+
+/* --- add address form --- */
+.fill-order-add-address-form-btn {
+    margin-top: 5px;
+
+    cursor: pointer;
+}
+
+#fill-order-add-address-form-overlay {
+    position: fixed;
+    top: 0; left: 0;
+    z-index: 2;
+  
+    width: 100%; height: 100%;
+  
+    background: rgba(0, 0, 0, .3);
+}
+.fill-order-add-address-form {
+    position: fixed;
+    top: calc(50% - 135px); left: calc(50% - 150px);
+    z-index: 3;
+
+    width: 300px; height: 270px;
+    padding: 10px;
+
+    overflow: hidden;
+    background: white;
+}
+.fill-order-add-address-form p {
+    margin-top: 0;
+}
+.fill-order-add-address-form-submit {
+    width: 280px;
+    padding-top: 10px;
+
+    text-align: center;
+}
+.fill-order-add-address-form-submit button {
+    cursor: pointer;
+}
+
+.fill-order-add-address-form-view-section {
+    margin-top: 15px;
+}
+.fill-order-add-address-form-view-section p {
+    width: 280px;
+
+    font-size: smaller;
+    font-weight: lighter;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
