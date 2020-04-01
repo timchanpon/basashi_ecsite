@@ -1,5 +1,6 @@
 from django.views import generic
 from django.contrib.auth.mixins import UserPassesTestMixin
+from django.shortcuts import redirect
 
 from addresses.models import Address
 from orders.models import Order
@@ -28,3 +29,18 @@ class UserDetailView(UserPassesTestMixin, generic.DetailView):
         context['orders_ended'] = orders_ended
 
         return context
+
+
+class UpdateUsernameView(UserPassesTestMixin, generic.View):
+    def test_func(self):
+        user = self.request.user
+        username = self.request.POST['username_original']
+
+        return user.username == username
+
+    def post(self, request):
+        user = self.request.user
+        user.username = request.POST['username']
+        user.save()
+
+        return redirect('users:user_detail', user.pk)

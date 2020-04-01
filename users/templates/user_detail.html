@@ -13,8 +13,9 @@
     <img src="{{ object.user_icon.url }}">
   </div>
   <h2 class="user-detail-name" v-if="!isEditingUN">{{ object.username }} <i class="fas fa-edit" @click="isEditingUN=true"></i></h2>
-  <form class="user-detail-name-edit" method="POST" action="" v-if="isEditingUN">
+  <form class="user-detail-name-edit" method="POST" action="{% url 'users:update_username' %}" v-if="isEditingUN">
     {% csrf_token %}
+    <input name="username_original" type="hidden" value="{{ object.username }}">
     <input name="username" placeholder="{{ object.username }}" :value="username" v-model="username">
     <button type="button" v-if="!username" @click="isEditingUN=false">戻る</button>
     <button type="submit" v-if="username">変更</button>
