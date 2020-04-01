@@ -13,7 +13,7 @@
     <img src="{{ object.user_icon.url }}" @click="isShowUIV=true">
   </div>
   <div id="user-detail-icon-view-overlay" v-if="isShowUIV" @click="isShowUIV=false; userIconUrl=null"></div>
-  <form class="user-detail-icon-view" method="POST" enctype="multipart/form-data" action="#" v-if="isShowUIV">
+  <form class="user-detail-icon-view" method="POST" enctype="multipart/form-data" action="{% url 'users:update_user' %}" v-if="isShowUIV">
     <img src="{{ object.user_icon.url }}" v-if="!userIconUrl">
     <img :src="userIconUrl" v-if="userIconUrl">
     {% csrf_token %}
