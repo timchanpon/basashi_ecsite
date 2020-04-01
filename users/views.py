@@ -34,10 +34,13 @@ class UserDetailView(UserPassesTestMixin, generic.DetailView):
 class UpdateUserView(LoginRequiredMixin, generic.View):
     def post(self, request):
         user = self.request.user
-        if request.FILES['user_icon']:
+        if 'user_icon' in request.FILES:
             user.user_icon = request.FILES['user_icon']
             user.save()
-        elif request.POST['username']:
+        elif 'reset_user_icon' in request.POST:
+            user.user_icon = request.POST['reset_user_icon']
+            user.save()
+        elif 'username' in request.POST:
             user.username = request.POST['username']
             user.save()
 

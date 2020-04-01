@@ -39,9 +39,21 @@
 .user-detail-icon-view input {
     display: none;
 }
-.user-detail-icon-view i, .user-detail-icon-view button {
+.user-detail-icon-view-btns {
     position: absolute;
-    bottom: 5px; right: 3px;
+    bottom: 0; right: 3px;
+
+    display: flex;
+    height: 5px;
+}
+.user-detail-icon-view-btns i {
+    margin: auto 2px;
+
+    cursor: pointer;
+}
+.user-detail-icon-view button {
+    position: absolute;
+    bottom: 5px; right: 5px;
 
     cursor: pointer;
 }

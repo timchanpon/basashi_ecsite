@@ -12,13 +12,17 @@
   <div class="user-detail-icon">
     <img src="{{ object.user_icon.url }}" @click="isShowUIV=true">
   </div>
-  <div id="user-detail-icon-view-overlay" v-if="isShowUIV" @click="isShowUIV=false; userIconUrl=null"></div>
+  <div id="user-detail-icon-view-overlay" v-if="isShowUIV" @click="closeUserIconView"></div>
   <form class="user-detail-icon-view" method="POST" enctype="multipart/form-data" action="{% url 'users:update_user' %}" v-if="isShowUIV">
     <img src="{{ object.user_icon.url }}" v-if="!userIconUrl">
     <img :src="userIconUrl" v-if="userIconUrl">
     {% csrf_token %}
-    <input id="input-user-icon" name="user_icon" type="file" accept="image/*" @change="setUserIconUrl">
-    <label for="input-user-icon" v-if="!userIconUrl"><i class="fas fa-edit"></i></label>
+    <input name="reset_user_icon" type="hidden" value="default_user_icon.jpg" v-if="isResetUI">
+    <input id="input-user-icon" name="user_icon" type="file" accept="image/*" @change="setUserIconUrl" v-if="!isResetUI">
+    <div class="user-detail-icon-view-btns" v-if="!userIconUrl">
+      <label for="input-user-icon"><i class="fas fa-edit"></i></label>
+      <i class="far fa-minus-square" @click="isResetUI=true"></i>
+    </div>
     <button type="submit" v-if="userIconUrl">変更</button>
   </form>
 
@@ -118,6 +122,7 @@
       // user icon
       isShowUIV: false,
       userIconUrl: '',
+      isResetUI: false,
 
       // user name
       isEditingUN: false,
@@ -140,6 +145,7 @@
       building: '',
     },
     methods: {
+      // user icon
       setUserIconUrl: function(e) {
         userIcon = e.target.files[0];
         reader = new FileReader
@@ -149,8 +155,21 @@
 
         reader.readAsDataURL(userIcon)
       },
+      closeUserIconView: function() {
+        this.isShowUIV = false
+        this.userIconUrl = ''
+        this.isResetUI = false
+      },
     },
     watch: {
+      // user icon
+      isResetUI: function() {
+        if (this.isResetUI) {
+          this.userIconUrl = '/media/default_user_icon.jpg'
+        }
+      },
+
+      // address form
       prefId: function() {
         if (this.prefId) {
           pref = this.addresses.data[this.prefId-1]
