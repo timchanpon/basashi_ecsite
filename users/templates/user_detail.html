@@ -21,7 +21,7 @@
     <input id="input-user-icon" name="user_icon" type="file" accept="image/*" @change="setUserIconUrl" v-if="!isResetUI">
     <div class="user-detail-icon-view-btns" v-if="!userIconUrl">
       <label for="input-user-icon"><i class="fas fa-edit"></i></label>
-      <i class="far fa-minus-square" @click="isResetUI=true"></i>
+      <i class="far fa-minus-square" id="user-detail-icon-view-reset-btn" @click="isResetUI=true"></i>
     </div>
     <button type="submit" v-if="userIconUrl">変更</button>
   </form>

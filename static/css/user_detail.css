@@ -41,15 +41,17 @@
 }
 .user-detail-icon-view-btns {
     position: absolute;
-    bottom: 0; right: 3px;
+    bottom: 5px; right: 5px;
 
     display: flex;
-    height: 5px;
 }
 .user-detail-icon-view-btns i {
-    margin: auto 2px;
+    margin: 0 2px;
 
     cursor: pointer;
+}
+#user-detail-icon-view-reset-btn {
+    font-size: 1.1rem;
 }
 .user-detail-icon-view button {
     position: absolute;
