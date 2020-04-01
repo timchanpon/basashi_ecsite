@@ -23,7 +23,7 @@ class Post(models.Model):
 
     part = models.ForeignKey(Part, verbose_name='部位', on_delete=models.PROTECT)
     details = models.TextField(verbose_name='詳細', max_length=200, blank=True, null=True)
-    image = models.ImageField(verbose_name='商品画像', default='basashi_sample.jpg')
+    image = models.ImageField(verbose_name='商品画像', upload_to='post_img/', default='basashi_sample.jpg')
     num_grams = models.PositiveIntegerField(verbose_name='グラム数', default=100)
     price = models.PositiveIntegerField(verbose_name='価格')
     purchase_amt = models.PositiveIntegerField(verbose_name='仕入れ量', default=1)
