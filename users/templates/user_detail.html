@@ -13,20 +13,18 @@
     <img src="{{ object.user_icon.url }}" @click="isShowUIV=true">
   </div>
   <div id="user-detail-icon-view-overlay" v-if="isShowUIV" @click="isShowUIV=false; userIconUrl=null"></div>
-  <form class="user-detail-icon-view" method="POST" action="#" v-if="isShowUIV">
+  <form class="user-detail-icon-view" method="POST" enctype="multipart/form-data" action="#" v-if="isShowUIV">
     <img src="{{ object.user_icon.url }}" v-if="!userIconUrl">
     <img :src="userIconUrl" v-if="userIconUrl">
     {% csrf_token %}
-    <input id="input-user-icon" type="file" accept="image/*" @change="setUserIconUrl">
+    <input id="input-user-icon" name="user_icon" type="file" accept="image/*" @change="setUserIconUrl">
     <label for="input-user-icon" v-if="!userIconUrl"><i class="fas fa-edit"></i></label>
     <button type="submit" v-if="userIconUrl">変更</button>
   </form>
-  <!-- tmp -->
 
   <h2 class="user-detail-name" v-if="!isEditingUN">{{ object.username }} <i class="fas fa-edit" @click="isEditingUN=true"></i></h2>
-  <form class="user-detail-name-edit" method="POST" action="{% url 'users:update_username' %}" v-if="isEditingUN">
+  <form class="user-detail-name-edit" method="POST" action="{% url 'users:update_user' %}" v-if="isEditingUN">
     {% csrf_token %}
-    <input name="username_original" type="hidden" value="{{ object.username }}">
     <input name="username" placeholder="{{ object.username }}" :value="username" v-model="username">
     <button type="button" v-if="!username" @click="isEditingUN=false">戻る</button>
     <button type="submit" v-if="username">変更</button>
