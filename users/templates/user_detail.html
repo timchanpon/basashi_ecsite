@@ -21,6 +21,7 @@
     <label for="input-user-icon" v-if="!userIconUrl"><i class="fas fa-edit"></i></label>
     <button type="submit" v-if="userIconUrl">変更</button>
   </form>
+  <!-- tmp -->
 
   <h2 class="user-detail-name" v-if="!isEditingUN">{{ object.username }} <i class="fas fa-edit" @click="isEditingUN=true"></i></h2>
   <form class="user-detail-name-edit" method="POST" action="{% url 'users:update_username' %}" v-if="isEditingUN">
