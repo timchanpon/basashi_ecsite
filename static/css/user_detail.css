@@ -18,6 +18,18 @@
 
     text-align: center;
 }
+.user-detail-name i {
+    font-size: .8rem;
+    cursor: pointer;
+}
+.user-detail-name-edit {
+    margin: 15px 0;
+
+    text-align: center;
+}
+.user-detail-name-edit button {
+    cursor: pointer;
+}
 
 /* --- user detail menu --- */
 .user-detail-menu-tab {
