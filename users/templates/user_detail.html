@@ -10,8 +10,10 @@
 {% block contents %}
 <div id="user-detail">
   <div class="user-detail-icon">
-    <img src="{{ object.user_icon.url }}">
+    <img src="{{ object.user_icon.url }}" @click="isShowUIV=true">
   </div>
+  <div id="user-detail-icon-view-overlay" v-if="isShowUIV" @click="isShowUIV=false"></div>
+  <img class="user-detail-icon-view" v-if="isShowUIV" src="{{ object.user_icon.url }}">
   <h2 class="user-detail-name" v-if="!isEditingUN">{{ object.username }} <i class="fas fa-edit" @click="isEditingUN=true"></i></h2>
   <form class="user-detail-name-edit" method="POST" action="{% url 'users:update_username' %}" v-if="isEditingUN">
     {% csrf_token %}
@@ -106,6 +108,9 @@
   new Vue({
     el: '#user-detail',
     data: {
+      // user icon
+      isShowUIV: false,
+
       // user name
       isEditingUN: false,
       username: '',
