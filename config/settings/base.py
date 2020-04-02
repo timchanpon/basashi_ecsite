@@ -128,9 +128,9 @@ USE_TZ = True
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
-
 STATIC_URL = '/static/'
 
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
 
@@ -172,8 +172,6 @@ ALLOWED_HOSTS = [os.environ.get('ALLOWED_HOSTS')]
 
 
 # 静的ファイルを配置する位置
-STATIC_ROOT = '/usr/share/nginx/html/static'
-MEDIA_ROOT = '/usr/share/nginx/html/media'
 
 # Amazon SES関連設定
 AWS_SES_ACCESS_KEY_ID = os.environ.get('AWS_SES_ACCESS_KEY_ID')
