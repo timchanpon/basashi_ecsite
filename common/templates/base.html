@@ -34,20 +34,21 @@
             <h5 id="hamburger-menu-user-name">{{ user.username }}</h5>
           </div>
         {% endif %}
-        <h5>顧客用ページ</h5>
+        <h5>商品</h5>
           <p>商品一覧<a href="/"></a></p>
-          {% if user.is_authenticated %}
-            <p>ログアウト<a href="/accounts/logout"></a></p>
-          {% else %}
-            <p>新規登録<a href="/accounts/signup"></a></p>
-            <p>ログイン<a href="/accounts/login"></a></p>
-          {% endif %}
-        <h5>管理者用ページ</h5>
+        <h5>ユーザー</h5>
+        {% if user.is_authenticated %}
+          <p>ログアウト<a href="/accounts/logout"></a></p>
+        {% else %}
+          <p>新規登録<a href="/accounts/signup"></a></p>
+          <p>ログイン<a href="/accounts/login"></a></p>
+        {% endif %}
+        {% if user.is_superuser %}
+        <h5>管理者用</h5>
           <p>管理サイト<a href="/admin"></a></p>
-          {% if user.is_superuser %}
-            <p>商品出品<a href="/create-post"></a></p>
-            <p>サイト設定変更<a href="{% url 'common:update_site_settings' True %}"></a></p>
-          {% endif %}
+          <p>商品出品<a href="/create-post"></a></p>
+          <p>サイト設定変更<a href="{% url 'common:update_site_settings' True %}"></a></p>
+        {% endif %}
       </div>
     </transition>
 
