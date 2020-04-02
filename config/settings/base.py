@@ -163,7 +163,7 @@ ACCOUNT_LOGOUT_ON_GET = True
 
 
 # 試験的に追加（本番用設定ファイルが読み込まれているのか確認）
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = [os.environ.get('ALLOWED_HOSTS')]
 
