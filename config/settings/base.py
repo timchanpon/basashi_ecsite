@@ -126,8 +126,6 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
-STATIC_ROOT = '/usr/share/nginx/html/static'  # 試験的に追加（本番用設定ファイルが読み込まれているのか確認）
-
 STATIC_URL = '/static/'
 
 MEDIA_URL = '/media/'
@@ -162,3 +160,21 @@ ACCOUNT_LOGOUT_REDIRECT_URL = 'account_login'
 
 # ログアウトリンクをクリック一発に変更
 ACCOUNT_LOGOUT_ON_GET = True
+
+
+# 試験的に追加（本番用設定ファイルが読み込まれているのか確認）
+DEBUG = False
+
+ALLOWED_HOSTS = [os.environ.get('ALLOWED_HOSTS')]
+
+
+# 静的ファイルを配置する位置
+STATIC_ROOT = '/usr/share/nginx/html/static'
+MEDIA_ROOT = '/usr/share/nginx/html/media'
+
+# Amazon SES関連設定
+AWS_SES_ACCESS_KEY_ID = os.environ.get('AWS_SES_ACCESS_KEY_ID')
+AWS_SES_SECRET_ACCESS_KEY = os.environ.get('AWS_SES_SECRET_ACCESS_KEY')
+EMAIL_BACKEND = 'django_ses.SESBackend'
+
+STATIC_ROOT = '/usr/share/nginx/html/static'
