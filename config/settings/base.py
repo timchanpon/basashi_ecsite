@@ -130,7 +130,6 @@ STATICFILES_DIRS = (
 )
 STATIC_URL = '/static/'
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
 
@@ -163,17 +162,3 @@ ACCOUNT_LOGOUT_REDIRECT_URL = 'account_login'
 
 # ログアウトリンクをクリック一発に変更
 ACCOUNT_LOGOUT_ON_GET = True
-
-
-# 試験的に追加（本番用設定ファイルが読み込まれているのか確認）
-DEBUG = False
-
-ALLOWED_HOSTS = [os.environ.get('ALLOWED_HOSTS')]
-
-
-# 静的ファイルを配置する位置
-
-# Amazon SES関連設定
-AWS_SES_ACCESS_KEY_ID = os.environ.get('AWS_SES_ACCESS_KEY_ID')
-AWS_SES_SECRET_ACCESS_KEY = os.environ.get('AWS_SES_SECRET_ACCESS_KEY')
-EMAIL_BACKEND = 'django_ses.SESBackend'
