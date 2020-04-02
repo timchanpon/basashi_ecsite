@@ -125,9 +125,8 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
-STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'static'),
-)
+
+STATIC_ROOT = '/usr/share/nginx/html/static'  # 試験的に追加（本番用設定ファイルが読み込まれているのか確認）
 
 STATIC_URL = '/static/'
 
