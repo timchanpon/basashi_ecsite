@@ -21,7 +21,8 @@ from . import settings
 
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    # path('admin/', admin.site.urls),
+    path('control/', admin.site.urls),
 
     path('', include('posts.urls')),
     path('common/', include('common.urls')),

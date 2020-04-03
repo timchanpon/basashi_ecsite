@@ -45,7 +45,7 @@
         {% endif %}
         {% if user.is_superuser %}
         <h5>管理者用</h5>
-          <p>管理サイト<a href="/admin"></a></p>
+          <p>管理サイト<a href="/control"></a></p>
           <p>商品出品<a href="/create-post"></a></p>
           <p>サイト設定変更<a href="{% url 'common:update_site_settings' True %}"></a></p>
         {% endif %}
