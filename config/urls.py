@@ -33,5 +33,6 @@ urlpatterns = [
 ]
 
 
-# 開発サーバーでメディアを配信できるようにする設定
+# メディアを配信できるようにする設定
 urlpatterns += static(settings.local.MEDIA_URL, document_root=settings.local.MEDIA_ROOT)
+# urlpatterns += static(settings.production.MEDIA_URL, document_root=settings.production.MEDIA_ROOT)
