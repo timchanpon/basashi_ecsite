@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     'django_ses',
 
     # belajar_hiragana
+    'belajar_hiragana.apps.BelajarHiraganaConfig',
+
     'rest_framework',
 ]
 
