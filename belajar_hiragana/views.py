@@ -1,9 +1,14 @@
+from django.views import generic
 from rest_framework import generics
 
 from .models import Word
 from .serializers import WordSerializer
 
 import random
+
+
+class HomeView(generic.TemplateView):
+    template_name = 'home.html'
 
 
 class WordAPIView(generics.ListAPIView):

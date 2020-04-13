@@ -24,12 +24,16 @@ urlpatterns = [
     # path('admin/', admin.site.urls),
     path('control/', admin.site.urls),
 
+    # tonantei_basashi
     path('', include('posts.urls')),
     path('common/', include('common.urls')),
     path('users/', include('users.urls')),
     path('accounts/', include('allauth.urls')),
     path('addresses/', include('addresses.urls')),
     path('orders/', include('orders.urls')),
+
+    # belajar_hiragana
+    path('belajar_hiragana/', include('belajar_hiragana.urls'))
 ]
 
 
