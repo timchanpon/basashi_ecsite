@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
+import sys
 
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -166,3 +167,7 @@ ACCOUNT_LOGOUT_REDIRECT_URL = 'account_login'
 
 # ログアウトリンクをクリック一発に変更
 ACCOUNT_LOGOUT_ON_GET = True
+
+
+# Add apps/ to the Python path
+sys.path.append(os.path.join(BASE_DIR, 'apps'))
