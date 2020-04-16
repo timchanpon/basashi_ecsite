@@ -28,7 +28,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    # tonantei_basashi
     'common.apps.CommonConfig',
     'posts.apps.PostsConfig',
     'users.apps.UsersConfig',
@@ -40,11 +39,6 @@ INSTALLED_APPS = [
     'allauth.account',
 
     'django_ses',
-
-    # belajar_hiragana
-    'belajar_hiragana.apps.BelajarHiraganaConfig',
-
-    'rest_framework',
 ]
 
 MIDDLEWARE = [
