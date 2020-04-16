@@ -16,6 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.contrib.staticfiles.urls import static
 from django.urls import path, include
+from django.views.generic import RedirectView
 
 from . import settings
 
@@ -33,7 +34,7 @@ urlpatterns = [
     path('orders/', include('orders.urls')),
 
     # belajar_hiragana
-    path('belajar_hiragana/', include('belajar_hiragana.urls'))
+    path('belajar_hiragana/', RedirectView.as_view(url='http://35.227.121.30/')),
 ]
 
 
