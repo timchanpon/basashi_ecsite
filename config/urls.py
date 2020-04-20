@@ -36,7 +36,7 @@ urlpatterns = [
     path('orders/', include('orders.urls')),
 
     # belajar_hiragana
-    path('belajar_hiragana/', RedirectView.as_view(url='http://35.227.121.30/')),
+    path('belajar_hiragana/', RedirectView.as_view(url='http://bljr.ga/')),
 ]
 
 
