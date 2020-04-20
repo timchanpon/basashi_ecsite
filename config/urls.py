@@ -18,7 +18,6 @@ import os
 from django.contrib import admin
 from django.contrib.staticfiles.urls import static
 from django.urls import path, include
-from django.views.generic import RedirectView
 
 from . import settings
 
@@ -27,16 +26,12 @@ urlpatterns = [
     # path('admin/', admin.site.urls),
     path('control/', admin.site.urls),
 
-    # tonantei_basashi
     path('', include('posts.urls')),
     path('common/', include('common.urls')),
     path('users/', include('users.urls')),
     path('accounts/', include('allauth.urls')),
     path('addresses/', include('addresses.urls')),
     path('orders/', include('orders.urls')),
-
-    # belajar_hiragana
-    path('belajar_hiragana/', RedirectView.as_view(url='http://bljr.ga/')),
 ]
 
 
